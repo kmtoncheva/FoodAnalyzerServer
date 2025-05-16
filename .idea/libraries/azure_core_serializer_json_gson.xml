@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="azure.core.serializer.json.gson" type="repository">
+    <properties maven-id="com.azure:azure-core-serializer-json-gson:1.2.14" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/azure-core-serializer-json-gson-1.2.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/azure-core-1.50.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/azure-xml-1.0.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-annotations-2.13.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-core-2.13.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-databind-2.13.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-datatype-jsr310-2.13.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.36.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reactor-core-3.4.38.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/reactive-streams-1.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/azure-json-1.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/gson-2.10.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
