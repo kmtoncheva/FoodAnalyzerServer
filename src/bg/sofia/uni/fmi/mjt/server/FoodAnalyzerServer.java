@@ -39,6 +39,11 @@ public class FoodAnalyzerServer {
     private boolean isServerWorking;
     private Selector selector;
 
+    private static class ClientContext {
+        ByteBuffer readBuffer = ByteBuffer.allocateDirect(BUFFER_SIZE);
+        ByteBuffer writeBuffer = null;
+    }
+
     private static final Logger LOGGER = LoggerConfig.createLogger(FoodAnalyzerServer.class.getName());
 
     public void start() {
@@ -85,26 +90,61 @@ public class FoodAnalyzerServer {
 
     private void processRequest(Iterator<SelectionKey> keyIterator) throws IOException {
         SelectionKey key = keyIterator.next();
+
         if (key.isReadable()) {
             SocketChannel clientChannel = (SocketChannel) key.channel();
-            ByteBuffer buffer = (ByteBuffer) key.attachment();
+            ClientContext context = (ClientContext) key.attachment();
 
-            String clientInput =
-                getClientInput(clientChannel, buffer); // throws if cannot read the bytes from the client channel socket
-
+            String clientInput = getClientInput(clientChannel, context.readBuffer);
             if (clientInput == null) {
-                return; // signal to the server that this client is no longer active
+                return;
             }
 
             processInput(clientInput, key, clientChannel);
+        } else if (key.isWritable()) {
+            SocketChannel clientChannel = (SocketChannel) key.channel();
+            writePendingData(clientChannel, key); // new handler
         } else if (key.isAcceptable()) {
-            accept(selector, key); // when the server is ready to accept a new client connection
-            // throws IOException - problem with accepting the new channel
+            accept(selector, key);
         }
+
+//        if (key.isReadable()) {
+//            SocketChannel clientChannel = (SocketChannel) key.channel();
+//            ByteBuffer buffer = (ByteBuffer) key.attachment();
+//
+//            String clientInput =
+//                getClientInput(clientChannel, buffer); // throws if cannot read the bytes from the client channel socket
+//
+//            if (clientInput == null) {
+//                return; // signal to the server that this client is no longer active
+//            }
+//
+//            processInput(clientInput, key, clientChannel);
+//        } else if (key.isAcceptable()) {
+//            accept(selector, key); // when the server is ready to accept a new client connection
+//            // throws IOException - problem with accepting the new channel
+//        }
 
         keyIterator.remove();
     }
 
+    private void accept(Selector selector, SelectionKey key) throws IOException {
+        ServerSocketChannel socketChannel = (ServerSocketChannel) key.channel();
+        SocketChannel acceptChannel = socketChannel.accept();
+        acceptChannel.configureBlocking(false);
+
+        ClientContext context = new ClientContext();
+        acceptChannel.register(selector, SelectionKey.OP_READ, context);
+
+        /*
+          ServerSocketChannel serverChannel = (ServerSocketChannel) key.channel();
+    SocketChannel clientChannel = serverChannel.accept();
+    clientChannel.configureBlocking(false);
+
+    ClientContext context = new ClientContext();
+    clientChannel.register(selector, SelectionKey.OP_READ, context);
+         */
+    }
 
     private String getClientInput(SocketChannel clientChannel, ByteBuffer byteBuffer) throws IOException {
         byteBuffer.clear();
@@ -165,8 +205,11 @@ public class FoodAnalyzerServer {
                 serverResponseDto = ServerResponseDto.error(e.getClientMessage());
             }
 
-            sendResponseToClient(channel, serverResponseDto.toJson(),
-                (ByteBuffer) key.attachment()); // in sendResponse we will make our Server Response
+
+            System.out.println(serverResponseDto.toJson());
+            sendResponseToClient(channel, serverResponseDto.toJson(), key);
+//            sendResponseToClient(channel, serverResponseDto.toJson(),
+//                (ByteBuffer) key.attachment()); // in sendResponse we will make our Server Response
 
         } catch (InvalidCommandException | IOException e) {
             LOGGER.warning(UNKNOWN_CMD_MSG + e.getMessage());
@@ -174,26 +217,36 @@ public class FoodAnalyzerServer {
         }
     }
 
-    private void accept(Selector selector, SelectionKey key) throws IOException {
-        ServerSocketChannel socketChannel = (ServerSocketChannel) key.channel();
-        SocketChannel acceptChannel = socketChannel.accept();
-        acceptChannel.configureBlocking(false);
-
-        ByteBuffer clientBuffer = ByteBuffer.allocateDirect(BUFFER_SIZE);
-
-        acceptChannel.register(selector, SelectionKey.OP_READ, clientBuffer);
-    }
-
-    private void sendResponseToClient(SocketChannel socketChannel, String response, ByteBuffer buffer)
+    private void sendResponseToClient(SocketChannel socketChannel, String response, SelectionKey key)
         throws IOException {
-       // System.out.println(response);
-        buffer.clear();
-       // System.out.println(response.getBytes().length);
-        buffer.put(response.getBytes());
-        buffer.flip();
+        ClientContext context = (ClientContext) key.attachment();
+        byte[] responseBytes = response.getBytes(StandardCharsets.UTF_8);
+        context.writeBuffer = ByteBuffer.wrap(responseBytes);
+
+        writePendingData(socketChannel, key); // try to write immediately
+
+//        buffer.clear();
+//        buffer.put(response.getBytes());
+//        buffer.flip();
+//
+//        socketChannel.write(buffer);
+    }
+    private void writePendingData(SocketChannel socketChannel, SelectionKey key) throws IOException {
+        ClientContext context = (ClientContext) key.attachment();
+        ByteBuffer buffer = context.writeBuffer;
+
+        if (buffer == null) return;
 
         socketChannel.write(buffer);
+
+        if (buffer.hasRemaining()) {
+            key.interestOps(key.interestOps() | SelectionKey.OP_WRITE); // still data to write
+        } else {
+            context.writeBuffer = null;
+            key.interestOps(key.interestOps() & ~SelectionKey.OP_WRITE); // writing done
+        }
     }
+
 
     private void stop() {
         this.isServerWorking = false;

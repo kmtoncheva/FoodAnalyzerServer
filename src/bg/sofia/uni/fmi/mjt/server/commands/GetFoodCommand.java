@@ -29,7 +29,7 @@ public class GetFoodCommand implements Command{
             ObjectMapper mapper = new ObjectMapper();
             GetFoodDto foods = mapper.readValue(response, GetFoodDto.class);
 
-            if(foods.getFoods().size() == 0) {
+            if(foods.foods().size() == 0) {
                 throw new FoodItemNotFoundException(null,
                     "No food items matched your search query: " + String.join(DELIMITER, tokens));
             }
@@ -38,8 +38,8 @@ public class GetFoodCommand implements Command{
 
             ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
             String prettyJson = writer.writeValueAsString(json);
-            System.out.println(foods.getFoods().size());
-            System.out.println(prettyJson);
+           // System.out.println(foods.getFoods().size());
+           // System.out.println(prettyJson);
 
             return mapper.writeValueAsString(foods);
         } catch (JsonProcessingException e) {

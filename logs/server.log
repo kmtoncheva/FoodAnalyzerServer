@@ -360,3 +360,252 @@ java.net.SocketException: Connection reset
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:57)
 	at Main.main(Main.java:8)
 
+май 17, 2025 12:29:14 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+май 17, 2025 12:30:11 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 12:44:00 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+май 17, 2025 12:44:17 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 12:46:46 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+май 17, 2025 12:47:15 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 12:47:23 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 12:47:31 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 12:53:35 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+май 17, 2025 1:00:12 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+май 17, 2025 1:00:37 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:10:56 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+май 17, 2025 1:16:27 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+май 17, 2025 1:16:43 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:22:11 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+май 17, 2025 1:22:28 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:34:40 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+май 17, 2025 1:35:27 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:37:01 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:38:16 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:38:16 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:38:16 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:38:28 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:38:28 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:38:31 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:38:31 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:38:40 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:38:40 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:39:03 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
+май 17, 2025 1:39:03 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:151)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:98)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:62)
+	at Main.main(Main.java:8)
+
