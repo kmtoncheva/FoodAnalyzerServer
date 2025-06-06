@@ -1,50 +1,56 @@
 package bg.sofia.uni.fmi.mjt.server.commands;
 
+import bg.sofia.uni.fmi.mjt.server.dto.model.SearchFoodItemDto;
+import bg.sofia.uni.fmi.mjt.server.dto.response.SearchApiResponseDto;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.FoodItemNotFoundException;
-import bg.sofia.uni.fmi.mjt.server.exceptions.api.MalformedRequestBodyException;
-import bg.sofia.uni.fmi.mjt.server.model.dto.GetFoodDto;
 import bg.sofia.uni.fmi.mjt.server.service.FoodService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+
+import java.util.List;
 
 import static bg.sofia.uni.fmi.mjt.server.constants.HttpConstants.DELIMITER;
+import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.NO_MATCHING_FOODS_MSG;
 
-public class GetFoodCommand implements Command{
-    private final String[] tokens; // can be more than one : beef noodles ???
+/**
+ * A command implementation that retrieves food items based on search tokens using a {@link FoodService}.
+ */
+public class GetFoodCommand implements Command<SearchFoodItemDto> {
+    private final String[] tokens;
 
     private final FoodService foodService;
 
+    /**
+     * Constructs a {@code GetFoodCommand} with the given search tokens and food service.
+     *
+     * @param tokens      the array of keywords from the client
+     * @param foodService the service responsible for making API calls to retrieve food information
+     */
     public GetFoodCommand(String[] tokens, FoodService foodService) {
         this.tokens = tokens;
         this.foodService = foodService;
     }
 
+    /**
+     * Executes the command to search for food items based on the provided tokens.
+     * <p>
+     * This method delegates the search request to the {@link FoodService}, which
+     * returns a parsed {@link SearchApiResponseDto}. If no matching food items
+     * are found, a {@link FoodItemNotFoundException} is thrown.
+     *
+     * @return a list of {@link SearchFoodItemDto} representing the found food items
+     * @throws ApiException              if there is an error during the search operation,
+     *                                   including communication errors or API issues
+     * @throws FoodItemNotFoundException if no matching food items are found for the given tokens
+     */
     @Override
-    public String execute() throws ApiException {
-        try {
-            String response = foodService.searchFood(tokens);
+    public List<SearchFoodItemDto> execute() throws ApiException {
+        SearchApiResponseDto apiResponseDto = foodService.searchFood(tokens);
 
-            ObjectMapper mapper = new ObjectMapper();
-            GetFoodDto foods = mapper.readValue(response, GetFoodDto.class);
-
-            if(foods.foods().size() == 0) {
-                throw new FoodItemNotFoundException(null,
-                    "No food items matched your search query: " + String.join(DELIMITER, tokens));
-            }
-
-            Object json = mapper.readValue(response, Object.class);
-
-            ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
-            String prettyJson = writer.writeValueAsString(json);
-           // System.out.println(foods.getFoods().size());
-           // System.out.println(prettyJson);
-
-            return mapper.writeValueAsString(foods);
-        } catch (JsonProcessingException e) {
-            throw new MalformedRequestBodyException("Invalid JSON payload: " + e.getMessage(),
-                "Server unable to process your request. Please try again later.", e);
+        if (apiResponseDto.getFoods().isEmpty()) {
+            throw new FoodItemNotFoundException(null,
+                NO_MATCHING_FOODS_MSG + String.join(DELIMITER, tokens));
         }
+
+        return apiResponseDto.getFoods();
     }
 }

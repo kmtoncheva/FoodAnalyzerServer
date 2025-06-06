@@ -2,13 +2,19 @@ package bg.sofia.uni.fmi.mjt.server;
 
 import bg.sofia.uni.fmi.mjt.server.commands.Command;
 import bg.sofia.uni.fmi.mjt.server.commands.CommandFactory;
+import bg.sofia.uni.fmi.mjt.server.dto.model.FoodItemDto;
+import bg.sofia.uni.fmi.mjt.server.dto.model.ReportFoodItemDto;
+import bg.sofia.uni.fmi.mjt.server.dto.model.SearchFoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.exceptions.InvalidCommandException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiServiceUnavailableException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.FoodItemNotFoundException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.MalformedRequestBodyException;
-import bg.sofia.uni.fmi.mjt.server.model.dto.ServerResponseDto;
+import bg.sofia.uni.fmi.mjt.server.dto.response.ServerResponseDto;
 import bg.sofia.uni.fmi.mjt.server.utility.LoggerConfig;
+import bg.sofia.uni.fmi.mjt.server.utility.RuntimeTypeAdapterFactory;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -19,9 +25,11 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static bg.sofia.uni.fmi.mjt.server.constants.FoodDataContsants.DATA_TYPE_TITLE;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerConstants.BUFFER_SIZE;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerConstants.HOST;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerConstants.PORT;
@@ -30,7 +38,7 @@ import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.ERRO
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.ERROR_PROCESSING_CLIENT_REQ_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SEE_LOGS_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SERVER_ERROR_LOGS_MSG;
-import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SERVER_ERROR_MSG;
+import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SERVER_FAILED_TO_START_ERROR_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SERVER_FAILED_TO_RECOGNIZE_CMD_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SERVER_STARTED_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.UNKNOWN_CMD_MSG;
@@ -45,6 +53,11 @@ public class FoodAnalyzerServer {
     }
 
     private static final Logger LOGGER = LoggerConfig.createLogger(FoodAnalyzerServer.class.getName());
+    private final CommandFactory commandFactory;
+
+    public FoodAnalyzerServer(CommandFactory commandFactory) {
+        this.commandFactory = commandFactory;
+    }
 
     public void start() {
         try (ServerSocketChannel serverSocketChannel = ServerSocketChannel.open()) {
@@ -68,7 +81,7 @@ public class FoodAnalyzerServer {
             }
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, SERVER_ERROR_LOGS_MSG, e);
-            System.out.println(SERVER_ERROR_MSG + SEE_LOGS_MSG);
+            System.out.println(SERVER_FAILED_TO_START_ERROR_MSG + SEE_LOGS_MSG);
         }
 
     }
@@ -103,27 +116,10 @@ public class FoodAnalyzerServer {
             processInput(clientInput, key, clientChannel);
         } else if (key.isWritable()) {
             SocketChannel clientChannel = (SocketChannel) key.channel();
-            writePendingData(clientChannel, key); // new handler
+            writePendingData(clientChannel, key);
         } else if (key.isAcceptable()) {
             accept(selector, key);
         }
-
-//        if (key.isReadable()) {
-//            SocketChannel clientChannel = (SocketChannel) key.channel();
-//            ByteBuffer buffer = (ByteBuffer) key.attachment();
-//
-//            String clientInput =
-//                getClientInput(clientChannel, buffer); // throws if cannot read the bytes from the client channel socket
-//
-//            if (clientInput == null) {
-//                return; // signal to the server that this client is no longer active
-//            }
-//
-//            processInput(clientInput, key, clientChannel);
-//        } else if (key.isAcceptable()) {
-//            accept(selector, key); // when the server is ready to accept a new client connection
-//            // throws IOException - problem with accepting the new channel
-//        }
 
         keyIterator.remove();
     }
@@ -169,11 +165,11 @@ public class FoodAnalyzerServer {
      * {"command":"get-food-report","args":"123"}
      * {"command":"quit"}
      */
-    private void processInput(String clientInput, SelectionKey key, SocketChannel channel) {
+    private void processInput(String clientInput, SelectionKey key, SocketChannel channel) throws IOException {
         Command command = null;
 
         try {
-            command = CommandFactory.create(clientInput);
+            command = commandFactory.create(clientInput);
 
             if (command.isTerminatingCommand()) {
                 System.out.println(CLIENT_DISCONNECTED_MSG);
@@ -186,12 +182,12 @@ public class FoodAnalyzerServer {
                 }
             }
 
-            String requestResponse = null;
+           // String requestResponse = null;
             ServerResponseDto serverResponseDto = null;
 
             try {
-                requestResponse = command.execute();
-                serverResponseDto = ServerResponseDto.ok(requestResponse);
+                List<FoodItemDto> apiFoods = command.execute();
+                serverResponseDto = ServerResponseDto.ok(apiFoods);
             } catch (ApiServiceUnavailableException | MalformedRequestBodyException e) {
                 LOGGER.log(Level.SEVERE, e.getMessage(), e);
                 System.out.println("Something went wrong while processing current request. " +
@@ -201,19 +197,38 @@ public class FoodAnalyzerServer {
             } catch (FoodItemNotFoundException e) {
                 serverResponseDto = ServerResponseDto.notFound(e.getClientMessage());
             } catch (ApiException e) {
-                LOGGER.log(Level.WARNING, e.getMessage(), e);
+                LOGGER.log(Level.SEVERE, e.getMessage(), e);
                 serverResponseDto = ServerResponseDto.error(e.getClientMessage());
             }
 
 
-            System.out.println(serverResponseDto.toJson());
-            sendResponseToClient(channel, serverResponseDto.toJson(), key);
-//            sendResponseToClient(channel, serverResponseDto.toJson(),
-//                (ByteBuffer) key.attachment()); // in sendResponse we will make our Server Response
+            // this is only for get-food !!! MUST be extracted in separate class delegated for JSON processing -
+            // like in the client side
+            RuntimeTypeAdapterFactory<FoodItemDto> factory =
+                RuntimeTypeAdapterFactory
+                    .of(FoodItemDto.class, DATA_TYPE_TITLE)
+                    .registerSubtype(SearchFoodItemDto.class, serverResponseDto.getResponseType())
+                    .registerSubtype(ReportFoodItemDto.class, serverResponseDto.getResponseType());
+
+            Gson gson = new GsonBuilder()
+                .registerTypeAdapterFactory(factory)
+                .create();
+
+            String responseMessage = gson.toJson(serverResponseDto, ServerResponseDto.class) + "\n"; // or use "\0"
+            sendResponseToClient(channel, responseMessage, key);
 
         } catch (InvalidCommandException | IOException e) {
             LOGGER.warning(UNKNOWN_CMD_MSG + e.getMessage());
-            ServerResponseDto.error(SERVER_FAILED_TO_RECOGNIZE_CMD_MSG + e.getMessage());
+            //ServerResponseDto.error(SERVER_FAILED_TO_RECOGNIZE_CMD_MSG + e.getMessage());
+
+            sendResponseToClient(channel, SERVER_FAILED_TO_RECOGNIZE_CMD_MSG + e.getMessage(), key);
+        } catch (RuntimeException e) {
+            LOGGER.log(Level.SEVERE, "NB", e);
+
+            LOGGER.warning("Unexpected error while parsing command: " + e.getMessage());
+            //ServerResponseDto.error("Invalid request format or unexpected internal error. Please check request and try again.");
+
+            sendResponseToClient(channel, "Invalid request format or unexpected internal error. Please check request and try again." +  "\n", key);
         }
     }
 

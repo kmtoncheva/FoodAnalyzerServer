@@ -1,16 +1,19 @@
 package bg.sofia.uni.fmi.mjt.server.commands;
 
-import bg.sofia.uni.fmi.mjt.server.model.dto.BarcodeRequestDto;
+import bg.sofia.uni.fmi.mjt.server.dto.model.BarcodeDto;
+import bg.sofia.uni.fmi.mjt.server.dto.model.FoodItemDto;
+
+import java.util.List;
 
 public class GetFoodByBarcodeCommand implements Command{
-    private BarcodeRequestDto params;
+    private BarcodeDto params;
 
-    public GetFoodByBarcodeCommand(BarcodeRequestDto params) {
+    public GetFoodByBarcodeCommand(BarcodeDto params) {
         this.params = params;
     }
 
     @Override
-    public String execute() {
-        return "";
+    public List<FoodItemDto> execute() {
+        return null;
     }
 }
