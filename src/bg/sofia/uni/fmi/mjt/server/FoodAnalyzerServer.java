@@ -3,8 +3,6 @@ package bg.sofia.uni.fmi.mjt.server;
 import bg.sofia.uni.fmi.mjt.server.commands.Command;
 import bg.sofia.uni.fmi.mjt.server.commands.CommandFactory;
 import bg.sofia.uni.fmi.mjt.server.dto.model.FoodItemDto;
-import bg.sofia.uni.fmi.mjt.server.dto.model.ReportFoodItemDto;
-import bg.sofia.uni.fmi.mjt.server.dto.model.SearchFoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.exceptions.InvalidCommandException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiServiceUnavailableException;
@@ -12,9 +10,7 @@ import bg.sofia.uni.fmi.mjt.server.exceptions.api.FoodItemNotFoundException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.MalformedRequestBodyException;
 import bg.sofia.uni.fmi.mjt.server.dto.response.ServerResponseDto;
 import bg.sofia.uni.fmi.mjt.server.utility.LoggerConfig;
-import bg.sofia.uni.fmi.mjt.server.utility.RuntimeTypeAdapterFactory;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -173,9 +169,9 @@ public class FoodAnalyzerServer {
 
             if (command.isTerminatingCommand()) {
                 System.out.println(CLIENT_DISCONNECTED_MSG);
-
                 try {
                     channel.close();
+
                     return;
                 } catch (IOException e) {
                     LOGGER.log(Level.SEVERE, ERROR_CLOSING_CONNECTION_MSG, e);
@@ -201,20 +197,9 @@ public class FoodAnalyzerServer {
                 serverResponseDto = ServerResponseDto.error(e.getClientMessage());
             }
 
+            Gson gson = new Gson();
+            String responseMessage = gson.toJson(serverResponseDto) + "\n"; // or use "\0"
 
-            // this is only for get-food !!! MUST be extracted in separate class delegated for JSON processing -
-            // like in the client side
-            RuntimeTypeAdapterFactory<FoodItemDto> factory =
-                RuntimeTypeAdapterFactory
-                    .of(FoodItemDto.class, DATA_TYPE_TITLE)
-                    .registerSubtype(SearchFoodItemDto.class, serverResponseDto.getResponseType())
-                    .registerSubtype(ReportFoodItemDto.class, serverResponseDto.getResponseType());
-
-            Gson gson = new GsonBuilder()
-                .registerTypeAdapterFactory(factory)
-                .create();
-
-            String responseMessage = gson.toJson(serverResponseDto, ServerResponseDto.class) + "\n"; // or use "\0"
             sendResponseToClient(channel, responseMessage, key);
 
         } catch (InvalidCommandException | IOException e) {

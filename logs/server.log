@@ -2551,3 +2551,33 @@ java.lang.IllegalArgumentException: types and labels must be unique
 
 май 24, 2025 1:44:30 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
 WARNING: Unexpected error while parsing command: types and labels must be unique
+юни 06, 2025 5:54:25 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 06, 2025 5:54:53 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+SEVERE: NB
+java.lang.NullPointerException: Cannot invoke "java.util.List.get(int)" because "this.foods" is null
+	at bg.sofia.uni.fmi.mjt.server.dto.response.ServerResponseDto.getResponseType(ServerResponseDto.java:28)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:210)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:116)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:75)
+	at Main.main(Main.java:25)
+
+юни 06, 2025 5:54:53 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+WARNING: Unexpected error while parsing command: Cannot invoke "java.util.List.get(int)" because "this.foods" is null
+юни 06, 2025 6:52:54 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 06, 2025 7:08:24 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 06, 2025 7:27:45 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 06, 2025 7:37:00 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:143)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:107)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
+	at Main.main(Main.java:25)
+
