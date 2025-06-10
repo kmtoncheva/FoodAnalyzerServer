@@ -1,8 +1,10 @@
 package bg.sofia.uni.fmi.mjt.server.service;
 
+import bg.sofia.uni.fmi.mjt.server.cache.FileCacheService;
 import bg.sofia.uni.fmi.mjt.server.dto.model.ReportFoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.dto.response.SearchApiResponseDto;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;
+import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiServiceUnavailableException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.FoodItemNotFoundException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.MalformedRequestBodyException;
 import bg.sofia.uni.fmi.mjt.server.http.HttpService;
@@ -11,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
@@ -38,9 +41,11 @@ import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.TRY_
  */
 public class FoodServiceImpl implements FoodService {
     private final HttpService httpService;
+    private final FileCacheService fileCacheService;
 
-    public FoodServiceImpl(HttpService httpService) {
+    public FoodServiceImpl(HttpService httpService, FileCacheService fileCacheService) {
         this.httpService = httpService;
+        this.fileCacheService = fileCacheService;
     }
 
     /**
@@ -69,27 +74,63 @@ public class FoodServiceImpl implements FoodService {
         }
     }
 
-    /**
-     * Searches for a specific food item using the provided ID by preparing an API request,
-     * delegating the call to {@link HttpService}, and parsing the response.
-     * It is responsible for handling the case where the item is missing or is not well-documented.
-     *
-     * @param fdcId ID that corresponds to the searched food item
-     * @return a {@link ReportFoodItemDto} containing the item that has been retrieved from the API
-     * @throws MalformedRequestBodyException if the response JSON is malformed or cannot be deserialized
-     * @throws ApiException if the searched item is missing or if an HTTP error occurs
-     */
+//    /**
+//     * Searches for a specific food item using the provided ID by preparing an API request,
+//     * delegating the call to {@link HttpService}, and parsing the response.
+//     * It is responsible for handling the case where the item is missing or is not well-documented.
+//     *
+//     * @param fdcId ID that corresponds to the searched food item
+//     * @return a {@link ReportFoodItemDto} containing the item that has been retrieved from the API
+//     * @throws MalformedRequestBodyException if the response JSON is malformed or cannot be deserialized
+//     * @throws ApiException if the searched item is missing or if an HTTP error occurs
+//     */
+//    @Override
+//    public ReportFoodItemDto getFoodReport(String fdcId) throws ApiException {
+//        String apiKey = getApiKey();
+//
+//        String url = BASE_URL + REPORT_ENDPOINT + fdcId + API_KEY_PARAM + apiKey;
+//        String bodyResponse;
+//
+//        try {
+//            bodyResponse = httpService.get(url);
+//        } catch (FoodItemNotFoundException e) {
+//            throw new FoodItemNotFoundException(null, NO_MATCHING_FOODS_MSG + fdcId);
+//        }
+//
+//        try {
+//            Gson gson = new Gson();
+//            ReportFoodItemDto foodItem = gson.fromJson(bodyResponse, ReportFoodItemDto.class);
+//
+//            if (foodItem.getDescription() == null) {
+//                throw new FoodItemNotFoundException(null, NOT_WELL_DOCUMENTED_MSG);
+//            }
+//
+//            return foodItem;
+//        } catch (JsonSyntaxException e) {
+//            throw new MalformedRequestBodyException(INVALID_JSON_PAYLOAD_MSG + e.getMessage(),
+//                SERVER_UNABLE_ERROR_MSG + TRY_AGAIN_LATER_MSG, e);
+//        }
+//    }
+
+
     @Override
     public ReportFoodItemDto getFoodReport(String fdcId) throws ApiException {
-        String apiKey = getApiKey();
+        String cacheKey = fdcId;
 
-        String url = BASE_URL + REPORT_ENDPOINT + fdcId + API_KEY_PARAM + apiKey;
         String bodyResponse;
-
         try {
-            bodyResponse = httpService.get(url);
-        } catch (FoodItemNotFoundException e) {
-            throw new FoodItemNotFoundException(null, NO_MATCHING_FOODS_MSG + fdcId);
+            bodyResponse = fileCacheService.get(cacheKey, () -> {
+                String apiKey = getApiKey();
+                String url = BASE_URL + REPORT_ENDPOINT + fdcId + API_KEY_PARAM + apiKey;
+
+                try {
+                    return httpService.get(url);
+                } catch (FoodItemNotFoundException e) {
+                    throw new FoodItemNotFoundException(null, NO_MATCHING_FOODS_MSG + fdcId);
+                }
+            });
+        } catch (IOException e) {
+            throw new ApiServiceUnavailableException(SERVER_UNABLE_ERROR_MSG, TRY_AGAIN_LATER_MSG, e);
         }
 
         try {

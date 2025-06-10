@@ -7,6 +7,7 @@ public final class ServerMessagesConstants {
     public static final String TRY_AGAIN_LATER_MSG = "Please try again later.";
 
     public static final String ERROR_PROCESSING_CLIENT_REQ_MSG = "Error while processing client request.";
+    public static final String ERROR_PARSING_CMD = "Unexpected error while parsing command";
     public static final String SERVER_ERROR_LOGS_MSG = "Fatal server error during startup.";
     public static final String SERVER_FAILED_TO_START_ERROR_MSG = "Server failed to start.";
     public static final String SERVER_UNABLE_ERROR_MSG = "Server unable to process your request. ";
@@ -17,7 +18,7 @@ public final class ServerMessagesConstants {
     public static final String INVALID_JSON_PAYLOAD_MSG = "Invalid JSON payload: ";
     public static final String NOT_WELL_DOCUMENTED_MSG =
         "The provided ID corresponds to a food that is not properly documented. We apologize for the inconvenience.";
-
+    public static final String DISAPPROVED_REQUEST = "Invalid request format or unexpected internal error. ";
 
 
     private ServerMessagesConstants() {}

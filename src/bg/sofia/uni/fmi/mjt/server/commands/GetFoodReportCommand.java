@@ -4,8 +4,6 @@ import bg.sofia.uni.fmi.mjt.server.dto.model.FoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.dto.model.ReportFoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;
 import bg.sofia.uni.fmi.mjt.server.service.FoodService;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 import java.util.List;
 

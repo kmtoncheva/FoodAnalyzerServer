@@ -2581,3 +2581,185 @@ java.net.SocketException: Connection reset
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
 	at Main.main(Main.java:25)
 
+юни 06, 2025 7:52:42 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 07, 2025 11:50:16 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 07, 2025 11:51:18 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+SEVERE: NB
+java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
+	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:121)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:185)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:112)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
+	at Main.main(Main.java:28)
+
+юни 07, 2025 11:51:18 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+WARNING: Unexpected error while parsing command: SHOULD NOT BE RUNTIME - TEMP
+юни 07, 2025 11:58:02 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+SEVERE: NB
+java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
+	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:121)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:185)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:112)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
+	at Main.main(Main.java:28)
+
+юни 07, 2025 11:58:02 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+WARNING: Unexpected error while parsing command: SHOULD NOT BE RUNTIME - TEMP
+юни 07, 2025 11:58:16 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 07, 2025 11:58:28 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+SEVERE: NB
+java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
+	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:121)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:185)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:112)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
+	at Main.main(Main.java:28)
+
+юни 07, 2025 11:58:28 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+WARNING: Unexpected error while parsing command: SHOULD NOT BE RUNTIME - TEMP
+юни 07, 2025 11:58:52 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 07, 2025 11:59:10 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+SEVERE: NB
+java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
+	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:121)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:185)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:112)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
+	at Main.main(Main.java:28)
+
+юни 07, 2025 11:59:10 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+WARNING: Unexpected error while parsing command: SHOULD NOT BE RUNTIME - TEMP
+юни 07, 2025 11:59:42 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+SEVERE: NB
+java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
+	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:121)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:185)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:112)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
+	at Main.main(Main.java:28)
+
+юни 07, 2025 11:59:42 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+WARNING: Unexpected error while parsing command: SHOULD NOT BE RUNTIME - TEMP
+юни 08, 2025 12:05:01 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 08, 2025 12:05:54 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+SEVERE: NB
+java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
+	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:121)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:187)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:112)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
+	at Main.main(Main.java:28)
+
+юни 08, 2025 12:05:54 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+WARNING: Unexpected error while parsing command: SHOULD NOT BE RUNTIME - TEMP
+юни 08, 2025 12:10:24 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 08, 2025 12:12:44 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:143)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:107)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
+	at Main.main(Main.java:28)
+
+юни 08, 2025 12:12:44 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:143)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:107)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
+	at Main.main(Main.java:28)
+
+юни 08, 2025 12:12:44 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:143)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:107)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
+	at Main.main(Main.java:28)
+
+юни 08, 2025 12:12:44 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:143)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:107)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
+	at Main.main(Main.java:28)
+
+юни 08, 2025 12:12:44 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:143)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:107)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
+	at Main.main(Main.java:28)
+
+юни 08, 2025 12:23:23 ПР.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 09, 2025 4:55:19 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 09, 2025 5:03:40 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 09, 2025 5:05:27 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 09, 2025 5:09:45 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:142)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:115)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:79)
+	at Main.main(Main.java:21)
+
+юни 09, 2025 5:10:28 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 09, 2025 5:11:31 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+SEVERE: Unexpected error while parsing command
+java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
+	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:122)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.executeCommand(FoodAnalyzerServer.java:242)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:227)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:118)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:77)
+	at Main.main(Main.java:21)
+
+юни 09, 2025 5:12:22 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+INFO: Client has disconnected.
+юни 09, 2025 5:15:03 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+INFO: Client has disconnected.

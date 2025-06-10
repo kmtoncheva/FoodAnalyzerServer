@@ -8,5 +8,7 @@ public final class CommandConstants {
     public static final String GET_FOOD_BY_BARCODE_CMD = "get-food-by-barcode";
     public static final String QUIT_CMD = "quit";
 
+    public static final String LINE_BREAK = "\n";
+
     private CommandConstants() {}
 }

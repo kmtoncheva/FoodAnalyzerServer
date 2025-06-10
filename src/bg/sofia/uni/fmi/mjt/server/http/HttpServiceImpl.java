@@ -28,6 +28,7 @@ public class HttpServiceImpl implements HttpService{
 
         try {
             HttpResponse<String> response = executeRequest(request);
+
             if(response.statusCode() == 400) {
                 throw new InvalidApiRequestException("Bad request sent to external API: " + response.body(),
                     "Your request parameters are invalid. Please check the documentation.");
