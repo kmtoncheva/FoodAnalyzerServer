@@ -3,6 +3,8 @@ package bg.sofia.uni.fmi.mjt.server.dto.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.Objects;
+
 /**
  * Represents a collection of core nutrient values typically found on a nutrition labels of Branded Foods returned
  * by the external API.
@@ -80,4 +82,22 @@ public class LabelNutrientsDto {
     public void setFiber(NutrientDto fiber) {
         this.fiber = fiber;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof LabelNutrientsDto)) return false;
+        LabelNutrientsDto that = (LabelNutrientsDto) o;
+        return Objects.equals(calories, that.calories) &&
+            Objects.equals(protein, that.protein) &&
+            Objects.equals(fat, that.fat) &&
+            Objects.equals(carbohydrates, that.carbohydrates) &&
+            Objects.equals(fiber, that.fiber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(calories, protein, fat, carbohydrates, fiber);
+    }
+
 }

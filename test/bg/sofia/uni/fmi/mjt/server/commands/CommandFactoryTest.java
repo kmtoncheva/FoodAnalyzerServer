@@ -24,7 +24,7 @@ public class CommandFactoryTest {
         String json = "{\"command\":\"get-food-report\", \"args\":\"12345\"}";
         Command<?> command = factory.create(json);
 
-        assertTrue(command instanceof GetFoodReportCommand, "Should create a get-food-report command instance on valid input.");
+        assertTrue(command instanceof GetFoodReportCommandTest, "Should create a get-food-report command instance on valid input.");
     }
     @Test
     void testCreateGetFoodByBarcodeCommand() throws Exception {

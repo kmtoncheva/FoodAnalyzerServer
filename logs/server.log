@@ -2526,7 +2526,7 @@ SEVERE: Bad request sent to external API: {"timestamp":"2025-05-23T22:27:42.178+
 bg.sofia.uni.fmi.mjt.server.exceptions.api.InvalidApiRequestException: Bad request sent to external API: {"timestamp":"2025-05-23T22:27:42.178+0000","status":400,"error":"Bad Request","message":"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \"fdg\"","path":"/portal-data/api/v1/food/fdg"}
 	at bg.sofia.uni.fmi.mjt.server.http.HttpServiceImpl.get(HttpServiceImpl.java:32)
 	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:90)
-	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:26)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommandTest.execute(GetFoodReportCommand.java:26)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:189)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:116)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:75)
@@ -2590,7 +2590,7 @@ SEVERE: NB
 java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
 	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
 	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:121)
-	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommandTest.execute(GetFoodReportCommand.java:24)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:185)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:112)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
@@ -2603,7 +2603,7 @@ SEVERE: NB
 java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
 	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
 	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:121)
-	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommandTest.execute(GetFoodReportCommand.java:24)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:185)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:112)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
@@ -2618,7 +2618,7 @@ SEVERE: NB
 java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
 	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
 	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:121)
-	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommandTest.execute(GetFoodReportCommand.java:24)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:185)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:112)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
@@ -2633,7 +2633,7 @@ SEVERE: NB
 java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
 	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
 	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:121)
-	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommandTest.execute(GetFoodReportCommand.java:24)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:185)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:112)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
@@ -2646,7 +2646,7 @@ SEVERE: NB
 java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
 	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
 	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:121)
-	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommandTest.execute(GetFoodReportCommand.java:24)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:185)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:112)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
@@ -2661,7 +2661,7 @@ SEVERE: NB
 java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
 	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
 	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:121)
-	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommandTest.execute(GetFoodReportCommand.java:24)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:187)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:112)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:71)
@@ -2752,7 +2752,7 @@ SEVERE: Unexpected error while parsing command
 java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
 	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:43)
 	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:122)
-	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:24)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommandTest.execute(GetFoodReportCommand.java:24)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.executeCommand(FoodAnalyzerServer.java:242)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:227)
 	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:118)

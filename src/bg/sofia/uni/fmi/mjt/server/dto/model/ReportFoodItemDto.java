@@ -3,6 +3,8 @@ package bg.sofia.uni.fmi.mjt.server.dto.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.Objects;
+
 import static bg.sofia.uni.fmi.mjt.server.constants.FoodDataContsants.REPORT_FOOD_ITEM;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -48,5 +50,20 @@ public class ReportFoodItemDto implements FoodItemDto{
     @Override
     public String getFoodItem() {
         return REPORT_FOOD_ITEM;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ReportFoodItemDto)) return false;
+        ReportFoodItemDto that = (ReportFoodItemDto) o;
+        return Objects.equals(description, that.description) &&
+            Objects.equals(ingredients, that.ingredients) &&
+            Objects.equals(labelNutrients, that.labelNutrients);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(description, ingredients, labelNutrients);
     }
 }

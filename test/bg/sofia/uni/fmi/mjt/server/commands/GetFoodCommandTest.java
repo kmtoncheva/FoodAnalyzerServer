@@ -21,7 +21,7 @@ public class GetFoodCommandTest {
     String[] tokens = {"raffaello", "treat"};
     FoodService foodService = mock(FoodServiceImpl.class);
 
-    GetFoodCommand command = new GetFoodCommand(tokens, foodService);
+    Command command = new GetFoodCommand(tokens, foodService);
 
     @Test
     void testExecuteWithListOfFoods() throws ApiException {

@@ -2,3 +2,6 @@
 /shelf/
 /out/
 /workspace.xml
+.idea/
+logs/
+lib/

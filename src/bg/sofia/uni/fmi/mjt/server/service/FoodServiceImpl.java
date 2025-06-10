@@ -137,6 +137,7 @@ public class FoodServiceImpl implements FoodService {
             Gson gson = new Gson();
             ReportFoodItemDto foodItem = gson.fromJson(bodyResponse, ReportFoodItemDto.class);
 
+            // at least description should be present
             if (foodItem.getDescription() == null) {
                 throw new FoodItemNotFoundException(null, NOT_WELL_DOCUMENTED_MSG);
             }
