@@ -2763,3 +2763,49 @@ java.lang.RuntimeException: SHOULD NOT BE RUNTIME - TEMP
 INFO: Client has disconnected.
 юни 09, 2025 5:15:03 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
 INFO: Client has disconnected.
+юни 11, 2025 1:25:33 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 11, 2025 1:28:20 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer executeCommand
+SEVERE: Bad request sent to external API: {"timestamp":"2025-06-11T10:28:20.594+0000","status":400,"error":"Bad Request","message":"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \"rafaello\"","path":"/portal-data/api/v1/food/rafaello"}
+bg.sofia.uni.fmi.mjt.server.exceptions.api.InvalidApiRequestException: Bad request sent to external API: {"timestamp":"2025-06-11T10:28:20.594+0000","status":400,"error":"Bad Request","message":"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \"rafaello\"","path":"/portal-data/api/v1/food/rafaello"}
+	at bg.sofia.uni.fmi.mjt.server.http.HttpServiceImpl.get(HttpServiceImpl.java:33)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.fetchReportFromApi(FoodServiceImpl.java:80)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.lambda$getReport$0(FoodServiceImpl.java:63)
+	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:55)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getReport(FoodServiceImpl.java:63)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:56)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:41)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.executeCommand(FoodAnalyzerServer.java:190)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:175)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:128)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:87)
+	at Main.main(Main.java:33)
+
+юни 11, 2025 1:36:54 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+INFO: Client has disconnected.
+юни 11, 2025 1:36:58 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+INFO: Client has disconnected.
+юни 11, 2025 1:37:01 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+INFO: Client has disconnected.
+юни 11, 2025 1:37:06 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+INFO: Client has disconnected.
+юни 11, 2025 1:37:10 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+INFO: Client has disconnected.
+юни 11, 2025 1:37:17 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer executeCommand
+SEVERE: Bad request sent to external API: {"timestamp":"2025-06-11T10:37:17.829+0000","status":400,"error":"Bad Request","message":"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \"jhdf\"","path":"/portal-data/api/v1/food/jhdf"}
+bg.sofia.uni.fmi.mjt.server.exceptions.api.InvalidApiRequestException: Bad request sent to external API: {"timestamp":"2025-06-11T10:37:17.829+0000","status":400,"error":"Bad Request","message":"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \"jhdf\"","path":"/portal-data/api/v1/food/jhdf"}
+	at bg.sofia.uni.fmi.mjt.server.http.HttpServiceImpl.get(HttpServiceImpl.java:33)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.fetchReportFromApi(FoodServiceImpl.java:80)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.lambda$getReport$0(FoodServiceImpl.java:63)
+	at bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl.get(FileCacheServiceImpl.java:55)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getReport(FoodServiceImpl.java:63)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:56)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:41)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.executeCommand(FoodAnalyzerServer.java:190)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:175)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:128)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:87)
+	at Main.main(Main.java:33)
+
+юни 11, 2025 1:37:20 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer processInput
+INFO: Client has disconnected.

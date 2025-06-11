@@ -1,11 +1,13 @@
 package bg.sofia.uni.fmi.mjt.server.constants;
 
 public final class ServerMessagesConstants {
+    // common messages
     public static final String SERVER_STARTED_MSG = "Server started and listening on port ";
     public static final String SEE_LOGS_MSG = " See logs for details.";
     public static final String CLIENT_DISCONNECTED_MSG = "Client has disconnected.";
     public static final String TRY_AGAIN_LATER_MSG = "Please try again later.";
 
+    // error messages
     public static final String ERROR_PROCESSING_CLIENT_REQ_MSG = "Error while processing client request.";
     public static final String ERROR_PARSING_CMD = "Unexpected error while parsing command";
     public static final String SERVER_ERROR_LOGS_MSG = "Fatal server error during startup.";
@@ -19,7 +21,6 @@ public final class ServerMessagesConstants {
     public static final String NOT_WELL_DOCUMENTED_MSG =
         "The provided ID corresponds to a food that is not properly documented. We apologize for the inconvenience.";
     public static final String DISAPPROVED_REQUEST = "Invalid request format or unexpected internal error. ";
-
 
     private ServerMessagesConstants() {}
 }

@@ -11,7 +11,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class HttpServiceImpl implements HttpService{
+public final class HttpServiceImpl implements HttpService{
     /*
     status codes for the two types of get request :
     /v1/food/{fdcId} :                      /v1/foods/search
