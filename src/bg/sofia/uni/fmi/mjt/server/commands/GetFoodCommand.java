@@ -2,6 +2,7 @@ package bg.sofia.uni.fmi.mjt.server.commands;
 
 import bg.sofia.uni.fmi.mjt.server.dto.model.SearchFoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.dto.response.SearchApiResponseDto;
+import bg.sofia.uni.fmi.mjt.server.exceptions.CacheException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.FoodItemNotFoundException;
 import bg.sofia.uni.fmi.mjt.server.service.FoodService;
@@ -14,7 +15,7 @@ import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.NO_M
 /**
  * A command implementation that retrieves food items based on search tokens using a {@link FoodService}.
  */
-public class GetFoodCommand implements Command<SearchFoodItemDto> {
+public final class GetFoodCommand implements Command<SearchFoodItemDto> {
     private final String[] tokens;
 
     private final FoodService foodService;

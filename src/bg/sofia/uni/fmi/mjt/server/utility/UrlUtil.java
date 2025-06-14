@@ -9,7 +9,7 @@ import static bg.sofia.uni.fmi.mjt.server.constants.HttpConstants.DELIMITER;
 import static bg.sofia.uni.fmi.mjt.server.constants.HttpConstants.REPLACEMENT_DELIMITER;
 import static bg.sofia.uni.fmi.mjt.server.constants.HttpConstants.TARGET_DELIMITER;
 
-public class UrlUtil {
+public final class UrlUtil {
     public static String buildUrl(String... parts) {
         StringBuilder urlBuilder = new StringBuilder(BASE_URL);
         for (String part : parts) {
@@ -26,4 +26,6 @@ public class UrlUtil {
     public static String getApiKey() {
         return System.getenv(API_KEY_NAME);
     }
+
+    private UrlUtil() {}
 }

@@ -3,11 +3,13 @@ package bg.sofia.uni.fmi.mjt.server;
 import bg.sofia.uni.fmi.mjt.server.commands.Command;
 import bg.sofia.uni.fmi.mjt.server.commands.CommandFactory;
 import bg.sofia.uni.fmi.mjt.server.dto.model.FoodItemDto;
+import bg.sofia.uni.fmi.mjt.server.exceptions.BarcodeReaderException;
+import bg.sofia.uni.fmi.mjt.server.exceptions.ConfigurationException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.InvalidCommandException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.FoodItemNotFoundException;
 import bg.sofia.uni.fmi.mjt.server.dto.response.ServerResponseDto;
-import bg.sofia.uni.fmi.mjt.server.utility.LoggerConfig;
+import bg.sofia.uni.fmi.mjt.server.utility.LoggerUtil;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -33,12 +35,14 @@ import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.DISA
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.ERROR_CLOSING_CONNECTION_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.ERROR_PARSING_CMD;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.ERROR_PROCESSING_CLIENT_REQ_MSG;
+import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.MISCONFIGURED_FOOD_SERVER_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SEE_LOGS_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SERVER_ERROR_LOGS_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SERVER_FAILED_TO_START_ERROR_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SERVER_FAILED_TO_RECOGNIZE_CMD_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SERVER_STARTED_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.TRY_AGAIN_LATER_MSG;
+import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.UNABLE_TO_PROCESS_BARCODE_IMAGE_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.UNKNOWN_CMD_MSG;
 
 /**
@@ -59,10 +63,14 @@ public class FoodAnalyzerServer {
         ByteBuffer writeBuffer = null; // the output size can not be predicted
     }
 
-    private static final Logger LOGGER = LoggerConfig.createLogger(FoodAnalyzerServer.class.getName());
+    private static final Logger LOGGER = LoggerUtil.createLogger(FoodAnalyzerServer.class.getName());
     private final CommandFactory commandFactory;
 
     public FoodAnalyzerServer(CommandFactory commandFactory) {
+        if (commandFactory == null) {
+            throw new ConfigurationException(MISCONFIGURED_FOOD_SERVER_MSG);
+        }
+
         this.commandFactory = commandFactory;
     }
 
@@ -196,6 +204,10 @@ public class FoodAnalyzerServer {
             LOGGER.log(Level.SEVERE, e.getMessage(), e);
 
             return ServerResponseDto.error(e.getClientMessage());
+        } catch (BarcodeReaderException e) {
+            LOGGER.log(Level.WARNING, e.getMessage(), e);
+
+            return ServerResponseDto.error(UNABLE_TO_PROCESS_BARCODE_IMAGE_MSG + TRY_AGAIN_LATER_MSG);
         }
     }
 

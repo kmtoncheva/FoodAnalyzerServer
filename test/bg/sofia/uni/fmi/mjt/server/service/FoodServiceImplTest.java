@@ -1,7 +1,7 @@
 package bg.sofia.uni.fmi.mjt.server.service;
 
-import bg.sofia.uni.fmi.mjt.server.cache.CacheService;
-import bg.sofia.uni.fmi.mjt.server.cache.FileCacheServiceImpl;
+import bg.sofia.uni.fmi.mjt.server.service.cache.CacheService;
+import bg.sofia.uni.fmi.mjt.server.service.cache.FileCacheServiceImpl;
 import bg.sofia.uni.fmi.mjt.server.dto.model.ReportFoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.dto.model.SearchFoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.dto.response.SearchApiResponseDto;
@@ -9,8 +9,8 @@ import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiServiceUnavailableException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.FoodItemNotFoundException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.MalformedRequestBodyException;
-import bg.sofia.uni.fmi.mjt.server.http.HttpService;
-import bg.sofia.uni.fmi.mjt.server.http.HttpServiceImpl;
+import bg.sofia.uni.fmi.mjt.server.service.http.HttpService;
+import bg.sofia.uni.fmi.mjt.server.service.http.HttpServiceImpl;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -96,7 +96,7 @@ public class FoodServiceImplTest {
 
     @Test
     void testGetFoodReportWithBrandedFoodItem() throws ApiException, IOException {
-        when(cacheService.get(anyString(), any())).thenReturn(brandedFoodItem);
+        when(cacheService.getById(anyString(), any())).thenReturn(brandedFoodItem);
 
         ReportFoodItemDto foodItem = foodService.getFoodReport("id");
 
@@ -110,12 +110,12 @@ public class FoodServiceImplTest {
         Assertions.assertNull(foodItem.getLabelNutrients().getCarbohydrates(), "Should have handled correctly missing fields.");
         assertEquals(Float.valueOf("4.0"), foodItem.getLabelNutrients().getProtein().getValue(), "Values of the nutrients should be parsed.");
 
-        verify(cacheService, times(1)).get(anyString(), any());
+        verify(cacheService, times(1)).getById(anyString(), any());
     }
 
     @Test
     void testGetFoodReportWithFoundationFoodItem() throws ApiException, IOException {
-        when(cacheService.get(anyString(), any())).thenReturn(foundationFoodItem);
+        when(cacheService.getById(anyString(), any())).thenReturn(foundationFoodItem);
         ReportFoodItemDto foodItem = foodService.getFoodReport("id");
 
         Assertions.assertNotNull(foodItem, "Should have parsed correctly.");
@@ -123,12 +123,12 @@ public class FoodServiceImplTest {
         Assertions.assertNull(foodItem.getIngredients(), "Should have parsed correctly.");
         Assertions.assertNull(foodItem.getLabelNutrients(), "Should have parsed correctly.");
 
-        verify(cacheService, times(1)).get(anyString(), any());
+        verify(cacheService, times(1)).getById(anyString(), any());
     }
 
     @Test
     void testGetFoodReportWithSrLegacyFoodItem() throws ApiException, IOException {
-        when(cacheService.get(anyString(), any())).thenReturn(srLegacyFoodItem);
+        when(cacheService.getById(anyString(), any())).thenReturn(srLegacyFoodItem);
         ReportFoodItemDto foodItem = foodService.getFoodReport("id");
 
         Assertions.assertNotNull(foodItem, "Should have parsed correctly.");
@@ -136,12 +136,12 @@ public class FoodServiceImplTest {
         Assertions.assertNull(foodItem.getIngredients(), "Should have parsed correctly.");
         Assertions.assertNull(foodItem.getLabelNutrients(), "Should have parsed correctly.");
 
-        verify(cacheService, times(1)).get(anyString(), any());
+        verify(cacheService, times(1)).getById(anyString(), any());
     }
 
     @Test
     void testGetFoodReportWithSurveyFoodItem() throws ApiException, IOException {
-        when(cacheService.get(anyString(), any())).thenReturn(surveyFoodItem);
+        when(cacheService.getById(anyString(), any())).thenReturn(surveyFoodItem);
         ReportFoodItemDto foodItem = foodService.getFoodReport("id");
 
         Assertions.assertNotNull(foodItem, "Should have parsed correctly.");
@@ -149,12 +149,12 @@ public class FoodServiceImplTest {
         Assertions.assertNull(foodItem.getIngredients(), "Should have parsed correctly.");
         Assertions.assertNull(foodItem.getLabelNutrients(), "Should have parsed correctly.");
 
-        verify(cacheService, times(1)).get(anyString(), any());
+        verify(cacheService, times(1)).getById(anyString(), any());
     }
 
     @Test
     void testGetFoodReportWithExperimentalFoodItem() throws ApiException, IOException {
-        when(cacheService.get(anyString(), any())).thenReturn(experimentalFoodItem);
+        when(cacheService.getById(anyString(), any())).thenReturn(experimentalFoodItem);
 
         Assertions.assertThrows(FoodItemNotFoundException.class, () -> {
             foodService.getFoodReport("id");
@@ -162,7 +162,7 @@ public class FoodServiceImplTest {
     }
     @Test
     void testGetFoodReportWithBadJsonSyntax() throws ApiException, IOException {
-        when(cacheService.get(anyString(), any())).thenReturn("bad JSON");
+        when(cacheService.getById(anyString(), any())).thenReturn("bad JSON");
 
         Assertions.assertThrows(MalformedRequestBodyException.class, () -> {
             foodService.getFoodReport("id");

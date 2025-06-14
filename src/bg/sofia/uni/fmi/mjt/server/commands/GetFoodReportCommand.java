@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * A command implementation that retrieves a report for a single food based on a unique ID using a {@link FoodService}.
  */
-public class GetFoodReportCommand implements Command {
+public final class GetFoodReportCommand implements Command {
     private String fcdId;
     private final FoodService foodService;
 

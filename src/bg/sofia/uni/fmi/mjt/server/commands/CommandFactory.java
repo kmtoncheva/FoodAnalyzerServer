@@ -1,6 +1,7 @@
 package bg.sofia.uni.fmi.mjt.server.commands;
 
 import bg.sofia.uni.fmi.mjt.server.dto.model.BarcodeDto;
+import bg.sofia.uni.fmi.mjt.server.exceptions.ConfigurationException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.InvalidCommandException;
 import bg.sofia.uni.fmi.mjt.server.service.FoodService;
 import com.google.gson.Gson;
@@ -14,6 +15,9 @@ import static bg.sofia.uni.fmi.mjt.server.constants.CommandConstants.GET_FOOD_BY
 import static bg.sofia.uni.fmi.mjt.server.constants.CommandConstants.GET_FOOD_CMD;
 import static bg.sofia.uni.fmi.mjt.server.constants.CommandConstants.GET_FOOD_REPORT_CMD;
 import static bg.sofia.uni.fmi.mjt.server.constants.CommandConstants.QUIT_CMD;
+import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.INVALID_ARG_TYPE;
+import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.INVALID_CMD_FORMAT;
+import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.MISCONFIGURED_COMMAND_FACTORY_MSG;
 
 /**
  * A factory class responsible for creating {@link Command} instances
@@ -39,8 +43,12 @@ public final class CommandFactory {
      *
      * @param foodService the {@link FoodService} implementation to be used by commands created by this factory;
      *                    must not be {@code null}
+     * @throws ConfigurationException if there is a misconfiguration during construction like null properties
      */
     public CommandFactory(FoodService foodService) {
+        if (foodService == null) {
+            throw new ConfigurationException(MISCONFIGURED_COMMAND_FACTORY_MSG);
+        }
         this.foodService = foodService;
     }
 
@@ -49,28 +57,33 @@ public final class CommandFactory {
      *
      * @param json the input JSON string containing the command type and arguments
      * @return a concrete {@link Command} instance corresponding to the parsed input
-     * @throws InvalidCommandException if the command type is not recognized or improperly formatted
-     * @throws JsonSyntaxException     if the JSON is invalid
-     * @throws IllegalStateException   or {@link NullPointerException} if expected fields are missing
+     * @throws InvalidCommandException if the command type is not recognized, the JSON is invalid,
+     *                                 or expected fields are missing or malformed
      */
     public Command create(String json) throws InvalidCommandException {
-        JsonObject obj = JsonParser.parseString(json).getAsJsonObject();
-        String commandName = obj.get(COMMAND_TITLE).getAsString();
+        try {
+            JsonObject obj = JsonParser.parseString(json).getAsJsonObject();
+            String commandName = obj.get(COMMAND_TITLE).getAsString();
 
-        switch (commandName) {
-            case GET_FOOD_CMD:
-                String[] foodArgs = gson.fromJson(obj.get(ARGS_TITLE), String[].class);
-                return new GetFoodCommand(foodArgs, foodService);
-            case GET_FOOD_REPORT_CMD:
-                String reportArg = gson.fromJson(obj.get(ARGS_TITLE), String.class);
-                return new GetFoodReportCommand(reportArg, foodService);
-            case GET_FOOD_BY_BARCODE_CMD:
-                BarcodeDto params = gson.fromJson(obj.get(ARGS_TITLE), BarcodeDto.class);
-                return new GetFoodByBarcodeCommand(params);
-            case QUIT_CMD:
-                return new QuitCommand();
-            default:
-                throw new InvalidCommandException(commandName);
+            switch (commandName) {
+                case GET_FOOD_CMD:
+                    String[] foodArgs = gson.fromJson(obj.get(ARGS_TITLE), String[].class);
+                    return new GetFoodCommand(foodArgs, foodService);
+                case GET_FOOD_REPORT_CMD:
+                    String reportArg = gson.fromJson(obj.get(ARGS_TITLE), String.class);
+                    return new GetFoodReportCommand(reportArg, foodService);
+                case GET_FOOD_BY_BARCODE_CMD:
+                    BarcodeDto params = gson.fromJson(obj.get(ARGS_TITLE), BarcodeDto.class);
+                    return new GetFoodByBarcodeCommand(params, foodService);
+                case QUIT_CMD:
+                    return new QuitCommand();
+                default:
+                    throw new InvalidCommandException(commandName);
+            }
+        } catch (JsonSyntaxException | IllegalStateException | NullPointerException e) {
+            throw new InvalidCommandException(INVALID_CMD_FORMAT + e.getMessage(), e);
+        } catch (ClassCastException e) {
+            throw new InvalidCommandException(INVALID_ARG_TYPE + e.getMessage(), e);
         }
     }
 }

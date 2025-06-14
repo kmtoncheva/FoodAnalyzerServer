@@ -1,6 +1,8 @@
 package bg.sofia.uni.fmi.mjt.server.commands;
 
 import bg.sofia.uni.fmi.mjt.server.dto.model.FoodItemDto;
+import bg.sofia.uni.fmi.mjt.server.exceptions.BarcodeReaderException;
+import bg.sofia.uni.fmi.mjt.server.exceptions.CacheException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;
 
 import java.util.List;
@@ -25,7 +27,7 @@ public interface Command<T extends FoodItemDto> {
      * @throws ApiException if an error occurs during execution, such as an external API failure,
      *                      invalid input, or no matching items found (to enable uniform error handling)
      */
-    List<T> execute() throws ApiException;
+    List<T> execute() throws ApiException, BarcodeReaderException;
 
     /**
      * Indicates whether the command should terminate the client-server session.

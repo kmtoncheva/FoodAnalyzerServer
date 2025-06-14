@@ -1,6 +1,6 @@
 package bg.sofia.uni.fmi.mjt.server.dto.response;
 
-import bg.sofia.uni.fmi.mjt.server.dto.enums.ResponseStatusType;
+import bg.sofia.uni.fmi.mjt.server.enums.ResponseStatusType;
 import bg.sofia.uni.fmi.mjt.server.dto.model.FoodItemDto;
 
 import java.util.List;

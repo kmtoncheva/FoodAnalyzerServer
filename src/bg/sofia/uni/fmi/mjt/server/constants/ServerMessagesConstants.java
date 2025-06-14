@@ -7,20 +7,40 @@ public final class ServerMessagesConstants {
     public static final String CLIENT_DISCONNECTED_MSG = "Client has disconnected.";
     public static final String TRY_AGAIN_LATER_MSG = "Please try again later.";
 
-    // error messages
+    // server error messages
     public static final String ERROR_PROCESSING_CLIENT_REQ_MSG = "Error while processing client request.";
     public static final String ERROR_PARSING_CMD = "Unexpected error while parsing command";
     public static final String SERVER_ERROR_LOGS_MSG = "Fatal server error during startup.";
     public static final String SERVER_FAILED_TO_START_ERROR_MSG = "Server failed to start.";
     public static final String SERVER_UNABLE_ERROR_MSG = "Server unable to process your request. ";
     public static final String ERROR_CLOSING_CONNECTION_MSG = "Error closing client connection.";
+
+    // commands error messages
     public static final String UNKNOWN_CMD_MSG = "Received unknown command from client: ";
-    public static final String SERVER_FAILED_TO_RECOGNIZE_CMD_MSG = "Server failed to recognize the command: ";
+    public static final String SERVER_FAILED_TO_RECOGNIZE_CMD_MSG = "Server failed to recognize the command. ";
+    public static final String INVALID_CMD_FORMAT =  "Invalid command format: ";
+    public static final String INVALID_ARG_TYPE = "Invalid argument type: ";
+
+    // requests error messages
     public static final String NO_MATCHING_FOODS_MSG = "No food items matched your search query: ";
+    public static final String NO_INFO_IN_THE_CACHE_MSG = "There is no information about this food in the cache.";
     public static final String INVALID_JSON_PAYLOAD_MSG = "Invalid JSON payload: ";
     public static final String NOT_WELL_DOCUMENTED_MSG =
         "The provided ID corresponds to a food that is not properly documented. We apologize for the inconvenience.";
     public static final String DISAPPROVED_REQUEST = "Invalid request format or unexpected internal error. ";
+    public static final String FAILED_TO_RETRIEVE_REPORT_MSG =
+        "Failed to retrieve report due to I/O error while accessing API.";
+    public static final String IMAGE_NOT_FOUND_MSG = "Provided image not found: ";
+    public static final String NO_BARCODE_FOUND_ERROR_MSG = "No barcode found in the image.";
+    public static final String DECODING_IMAGE_ERROR_MSG =
+        "Unexpected error while reading or decoding the barcode from image: ";
+    public static final String UNABLE_TO_PROCESS_BARCODE_IMAGE_MSG =
+    "Unable to process the barcode from the provided image. ";
+
+    // configuration error messages
+    public static final String MISCONFIGURED_COMMAND_FACTORY_MSG = "FoodService must not be null.";
+    public static final String MISCONFIGURED_FOOD_SERVICE_MSG = "Http Service and Cache Service must not be null.";
+    public static final String MISCONFIGURED_FOOD_SERVER_MSG = "Command Factory must not be null.";
 
     private ServerMessagesConstants() {}
 }

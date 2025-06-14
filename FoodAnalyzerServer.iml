@@ -43,5 +43,7 @@
     <orderEntry type="library" name="junit.jupiter" level="project" />
     <orderEntry type="library" name="mockito.core" level="project" />
     <orderEntry type="library" name="mockito.inline" level="project" />
+    <orderEntry type="library" name="google.zxing.core" level="project" />
+    <orderEntry type="library" name="io.github.qyg2297248353.components.zxing.javase" level="project" />
   </component>
 </module>

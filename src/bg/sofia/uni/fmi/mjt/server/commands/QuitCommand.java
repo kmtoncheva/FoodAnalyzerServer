@@ -10,7 +10,7 @@ import java.util.List;
  * This command is used to indicate that the application should terminate.
  * When executed, it performs no operation and returns {@code null}.
  */
-public class QuitCommand implements Command {
+public final class QuitCommand implements Command {
     /**
      * Executes the quit command.
      * <p>
