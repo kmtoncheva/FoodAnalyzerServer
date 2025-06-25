@@ -41,11 +41,11 @@ public class FoodServiceImplTest {
     FoodService foodService = new FoodServiceImpl(httpService, cacheService);
 
     @Test
-    void testSearchFoodWithListOfFoods() throws ApiException {
+    void testSearchFoodByKeywordsWithListOfFoods() throws ApiException {
         Mockito.when(httpService.get(anyString())).thenReturn(sampleJsonResponse);
 
         String[] keywords = {"raffaello", "treat"};
-        SearchApiResponseDto result = foodService.searchFood(keywords);
+        SearchApiResponseDto result = foodService.searchFoodByKeywords(keywords);
 
         Assertions.assertNotNull(result, "Should have parsed correctly.");
         assertEquals(1, result.getFoods().size(), "Should have parsed one food item.");
@@ -59,11 +59,11 @@ public class FoodServiceImplTest {
     }
 
     @Test
-    void testSearchFoodWithEmptyOfFoods() throws ApiException {
+    void testSearchFoodByKeywordsWithEmptyOfFoods() throws ApiException {
         Mockito.when(httpService.get(anyString())).thenReturn(emptyJsonResponse);
 
         String[] keywords = {"none"};
-        SearchApiResponseDto result = foodService.searchFood(keywords);
+        SearchApiResponseDto result = foodService.searchFoodByKeywords(keywords);
 
         Assertions.assertNotNull(result, "Should have parsed correctly.");
         assertEquals(0, result.getFoods().size(), "Should have parsed no food items.");
@@ -72,31 +72,31 @@ public class FoodServiceImplTest {
     }
 
     @Test
-    void testSearchFoodWithApiException() throws ApiException {
+    void testSearchFoodByKeywordsWithApiException() throws ApiException {
         when(httpService.get(anyString())).thenThrow(
             new ApiServiceUnavailableException("API failure", "API failure"));
 
         String[] keywords = {"none"};
         ApiException exception = assertThrows(ApiException.class, () -> {
-            foodService.searchFood(keywords);
+            foodService.searchFoodByKeywords(keywords);
         });
         Assert.assertEquals("API failure", exception.getMessage());
     }
 
     @Test
-    void testSearchFoodWithInvalidJSON() throws ApiException {
+    void testSearchFoodByKeywordsWithInvalidJSON() throws ApiException {
         Mockito.when(httpService.get(anyString())).thenReturn("{ invalid JSON }");
 
         String[] keywords = {"apple"};
 
         Assertions.assertThrows(MalformedRequestBodyException.class, () -> {
-            foodService.searchFood(keywords);
+            foodService.searchFoodByKeywords(keywords);
         }, "Should throw an exception when the http service return invalid json.");
     }
 
     @Test
     void testGetFoodReportWithBrandedFoodItem() throws ApiException, IOException {
-        when(cacheService.getById(anyString(), any())).thenReturn(brandedFoodItem);
+        when(cacheService.getReportById(anyString(), any())).thenReturn(brandedFoodItem);
 
         ReportFoodItemDto foodItem = foodService.getFoodReport("id");
 
@@ -107,15 +107,17 @@ public class FoodServiceImplTest {
         Assertions.assertNotNull(foodItem.getLabelNutrients(), "Should have parsed correctly.");
         Assertions.assertNotNull(foodItem.getLabelNutrients().getCalories(), "Should have parsed correctly.");
         Assertions.assertNotNull(foodItem.getLabelNutrients().getFat(), "Should have parsed correctly.");
-        Assertions.assertNull(foodItem.getLabelNutrients().getCarbohydrates(), "Should have handled correctly missing fields.");
-        assertEquals(Float.valueOf("4.0"), foodItem.getLabelNutrients().getProtein().getValue(), "Values of the nutrients should be parsed.");
+        Assertions.assertNull(foodItem.getLabelNutrients().getCarbohydrates(),
+            "Should have handled correctly missing fields.");
+        assertEquals(Float.valueOf("4.0"), foodItem.getLabelNutrients().getProtein().getValue(),
+            "Values of the nutrients should be parsed.");
 
-        verify(cacheService, times(1)).getById(anyString(), any());
+        verify(cacheService, times(1)).getReportById(anyString(), any());
     }
 
     @Test
     void testGetFoodReportWithFoundationFoodItem() throws ApiException, IOException {
-        when(cacheService.getById(anyString(), any())).thenReturn(foundationFoodItem);
+        when(cacheService.getReportById(anyString(), any())).thenReturn(foundationFoodItem);
         ReportFoodItemDto foodItem = foodService.getFoodReport("id");
 
         Assertions.assertNotNull(foodItem, "Should have parsed correctly.");
@@ -123,12 +125,12 @@ public class FoodServiceImplTest {
         Assertions.assertNull(foodItem.getIngredients(), "Should have parsed correctly.");
         Assertions.assertNull(foodItem.getLabelNutrients(), "Should have parsed correctly.");
 
-        verify(cacheService, times(1)).getById(anyString(), any());
+        verify(cacheService, times(1)).getReportById(anyString(), any());
     }
 
     @Test
     void testGetFoodReportWithSrLegacyFoodItem() throws ApiException, IOException {
-        when(cacheService.getById(anyString(), any())).thenReturn(srLegacyFoodItem);
+        when(cacheService.getReportById(anyString(), any())).thenReturn(srLegacyFoodItem);
         ReportFoodItemDto foodItem = foodService.getFoodReport("id");
 
         Assertions.assertNotNull(foodItem, "Should have parsed correctly.");
@@ -136,36 +138,62 @@ public class FoodServiceImplTest {
         Assertions.assertNull(foodItem.getIngredients(), "Should have parsed correctly.");
         Assertions.assertNull(foodItem.getLabelNutrients(), "Should have parsed correctly.");
 
-        verify(cacheService, times(1)).getById(anyString(), any());
+        verify(cacheService, times(1)).getReportById(anyString(), any());
     }
 
     @Test
     void testGetFoodReportWithSurveyFoodItem() throws ApiException, IOException {
-        when(cacheService.getById(anyString(), any())).thenReturn(surveyFoodItem);
+        when(cacheService.getReportById(anyString(), any())).thenReturn(surveyFoodItem);
         ReportFoodItemDto foodItem = foodService.getFoodReport("id");
 
         Assertions.assertNotNull(foodItem, "Should have parsed correctly.");
-        assertEquals("Alfredo sauce with poultry", foodItem.getDescription(), "Description of the food should be parsed.");
+        assertEquals("Alfredo sauce with poultry", foodItem.getDescription(),
+            "Description of the food should be parsed.");
         Assertions.assertNull(foodItem.getIngredients(), "Should have parsed correctly.");
         Assertions.assertNull(foodItem.getLabelNutrients(), "Should have parsed correctly.");
 
-        verify(cacheService, times(1)).getById(anyString(), any());
+        verify(cacheService, times(1)).getReportById(anyString(), any());
     }
 
     @Test
     void testGetFoodReportWithExperimentalFoodItem() throws ApiException, IOException {
-        when(cacheService.getById(anyString(), any())).thenReturn(experimentalFoodItem);
+        when(cacheService.getReportById(anyString(), any())).thenReturn(experimentalFoodItem);
 
         Assertions.assertThrows(FoodItemNotFoundException.class, () -> {
             foodService.getFoodReport("id");
         }, "Should throw an exception when food is not well documented.");
     }
+
     @Test
     void testGetFoodReportWithBadJsonSyntax() throws ApiException, IOException {
-        when(cacheService.getById(anyString(), any())).thenReturn("bad JSON");
+        when(cacheService.getReportById(anyString(), any())).thenReturn("bad JSON");
 
         Assertions.assertThrows(MalformedRequestBodyException.class, () -> {
             foodService.getFoodReport("id");
         }, "Should throw an exception when json is invalid.");
+    }
+
+    @Test
+    void testGetFoodByBarcodeWithCachedItem() throws IOException, ApiException {
+        when(cacheService.getIdFromIndex(anyString())).thenReturn("id");
+        when(cacheService.getReportById(anyString(), any())).thenReturn(surveyFoodItem);
+        ReportFoodItemDto foodItem = foodService.getFoodByBarcode("id");
+
+        Assertions.assertNotNull(foodItem, "Should have parsed correctly.");
+        assertEquals("Alfredo sauce with poultry", foodItem.getDescription(),
+            "Description of the food should be parsed.");
+        Assertions.assertNull(foodItem.getIngredients(), "Should have parsed correctly.");
+        Assertions.assertNull(foodItem.getLabelNutrients(), "Should have parsed correctly.");
+
+        verify(cacheService, times(1)).getIdFromIndex("id");
+    }
+
+    @Test
+    void testGetFoodByBarcodeWithMissingItem() {
+        when(cacheService.getIdFromIndex(anyString())).thenReturn(null);
+
+        Assertions.assertThrows(FoodItemNotFoundException.class, () -> {
+            foodService.getFoodByBarcode("id");
+        }, "Should throw an exception when there is no info for the food item in the cache.");
     }
 }

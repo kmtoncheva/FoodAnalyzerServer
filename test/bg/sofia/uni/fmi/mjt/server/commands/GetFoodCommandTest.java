@@ -2,6 +2,7 @@ package bg.sofia.uni.fmi.mjt.server.commands;
 
 import bg.sofia.uni.fmi.mjt.server.dto.model.SearchFoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.dto.response.SearchApiResponseDto;
+import bg.sofia.uni.fmi.mjt.server.exceptions.BarcodeReaderException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiServiceUnavailableException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.FoodItemNotFoundException;
@@ -24,12 +25,12 @@ public class GetFoodCommandTest {
     Command command = new GetFoodCommand(tokens, foodService);
 
     @Test
-    void testExecuteWithListOfFoods() throws ApiException {
+    void testExecuteWithListOfFoods() throws ApiException, BarcodeReaderException {
         SearchFoodItemDto item1 = new SearchFoodItemDto("abc", "description1", "123");
         SearchFoodItemDto item2 = new SearchFoodItemDto("def", "description2", "456");
         SearchApiResponseDto responseDto = new SearchApiResponseDto(List.of(item1, item2));
 
-        when(foodService.searchFood(tokens)).thenReturn(responseDto);
+        when(foodService.searchFoodByKeywords(tokens)).thenReturn(responseDto);
 
         Assertions.assertEquals(command.execute().get(0), responseDto.getFoods().get(0),
             "Should return the same items returned from the service.");
@@ -41,7 +42,7 @@ public class GetFoodCommandTest {
     void testExecuteWithEmptyList() throws ApiException {
         SearchApiResponseDto responseDto = new SearchApiResponseDto(List.of());
 
-        when(foodService.searchFood(tokens)).thenReturn(responseDto);
+        when(foodService.searchFoodByKeywords(tokens)).thenReturn(responseDto);
 
         Assertions.assertThrows(FoodItemNotFoundException.class, () -> {
             command.execute();
@@ -50,7 +51,7 @@ public class GetFoodCommandTest {
 
     @Test
     void testExecuteWithApiException() throws ApiException {
-        when(foodService.searchFood(tokens)).thenThrow(
+        when(foodService.searchFoodByKeywords(tokens)).thenThrow(
             new ApiServiceUnavailableException("API failure", "API failure"));
 
         ApiException exception = assertThrows(ApiException.class, () -> {

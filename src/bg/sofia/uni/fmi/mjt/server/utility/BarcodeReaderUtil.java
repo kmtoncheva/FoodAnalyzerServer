@@ -19,18 +19,24 @@ import java.util.EnumSet;
 import java.util.Map;
 
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.DECODING_IMAGE_ERROR_MSG;
-import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.IMAGE_NOT_FOUND_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.NO_BARCODE_FOUND_ERROR_MSG;
+import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.TRY_AGAIN_LATER_MSG;
 
+/**
+ * Utility class for reading barcodes from image files using the ZXing library.
+ */
 public final class BarcodeReaderUtil {
-    public static String readImage(String imagePath) throws BarcodeReaderException {
+    /**
+     * Decodes and returns the textual data encoded in a barcode from the specified image file path.
+     *
+     * @param imageFile the file containing the barcode.
+     * @return the text encoded in the barcode, if successfully decoded.
+     * @throws BarcodeReaderException if the image does not exist, if no barcode is found,
+     *                                or if an error occurs during decoding.
+     */
+    public static String readBarcodeFromFile(File imageFile) throws BarcodeReaderException {
         try {
-            File file = new File(imagePath);
-            if (!file.exists()) {
-                throw new BarcodeReaderException(IMAGE_NOT_FOUND_MSG + imagePath);
-            }
-
-            BufferedImage bufferedImage = ImageIO.read(file);
+            BufferedImage bufferedImage = ImageIO.read(imageFile);
             LuminanceSource source = new BufferedImageLuminanceSource(bufferedImage);
             BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
 
@@ -44,7 +50,7 @@ public final class BarcodeReaderUtil {
         } catch (NotFoundException e) {
             throw new BarcodeReaderException(NO_BARCODE_FOUND_ERROR_MSG, e);
         } catch (Exception e) {
-            throw new BarcodeReaderException(DECODING_IMAGE_ERROR_MSG + imagePath, e);
+            throw new BarcodeReaderException(DECODING_IMAGE_ERROR_MSG + TRY_AGAIN_LATER_MSG, e);
         }
     }
 

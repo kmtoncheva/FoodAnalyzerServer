@@ -65,21 +65,22 @@ public final class CommandFactory {
             JsonObject obj = JsonParser.parseString(json).getAsJsonObject();
             String commandName = obj.get(COMMAND_TITLE).getAsString();
 
-            switch (commandName) {
-                case GET_FOOD_CMD:
+            return switch (commandName) {
+                case GET_FOOD_CMD -> {
                     String[] foodArgs = gson.fromJson(obj.get(ARGS_TITLE), String[].class);
-                    return new GetFoodCommand(foodArgs, foodService);
-                case GET_FOOD_REPORT_CMD:
+                    yield new GetFoodCommand(foodArgs, foodService);
+                }
+                case GET_FOOD_REPORT_CMD -> {
                     String reportArg = gson.fromJson(obj.get(ARGS_TITLE), String.class);
-                    return new GetFoodReportCommand(reportArg, foodService);
-                case GET_FOOD_BY_BARCODE_CMD:
+                    yield new GetFoodReportCommand(reportArg, foodService);
+                }
+                case GET_FOOD_BY_BARCODE_CMD -> {
                     BarcodeDto params = gson.fromJson(obj.get(ARGS_TITLE), BarcodeDto.class);
-                    return new GetFoodByBarcodeCommand(params, foodService);
-                case QUIT_CMD:
-                    return new QuitCommand();
-                default:
-                    throw new InvalidCommandException(commandName);
-            }
+                    yield new GetFoodByBarcodeCommand(params, foodService);
+                }
+                case QUIT_CMD -> new QuitCommand();
+                default -> throw new InvalidCommandException(commandName);
+            };
         } catch (JsonSyntaxException | IllegalStateException | NullPointerException e) {
             throw new InvalidCommandException(INVALID_CMD_FORMAT + e.getMessage(), e);
         } catch (ClassCastException e) {

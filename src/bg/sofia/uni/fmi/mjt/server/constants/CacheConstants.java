@@ -2,6 +2,7 @@ package bg.sofia.uni.fmi.mjt.server.constants;
 
 public final class CacheConstants {
     public static final String FAILED_TO_CREATE_CACHE_DIR_MSG = "Failed to create cache directory.";
+    public static final String PATH_CANNOT_BE_RESOLVED_MSG = " Paths can not be resolved.";
     public static final String FAILED_TO_SAVE_DATA_MSG = "Failed to save data to cache.";
     public static final String FAILED_TO_CREATE_CACHE_WARNING =
         "WARNING: Cache initialization failed. Continuing without caching.";

@@ -2,7 +2,6 @@ package bg.sofia.uni.fmi.mjt.server.commands;
 
 import bg.sofia.uni.fmi.mjt.server.dto.model.SearchFoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.dto.response.SearchApiResponseDto;
-import bg.sofia.uni.fmi.mjt.server.exceptions.CacheException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.FoodItemNotFoundException;
 import bg.sofia.uni.fmi.mjt.server.service.FoodService;
@@ -17,7 +16,6 @@ import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.NO_M
  */
 public final class GetFoodCommand implements Command<SearchFoodItemDto> {
     private final String[] tokens;
-
     private final FoodService foodService;
 
     /**
@@ -45,7 +43,7 @@ public final class GetFoodCommand implements Command<SearchFoodItemDto> {
      */
     @Override
     public List<SearchFoodItemDto> execute() throws ApiException {
-        SearchApiResponseDto apiResponseDto = foodService.searchFood(tokens);
+        SearchApiResponseDto apiResponseDto = foodService.searchFoodByKeywords(tokens);
 
         if (apiResponseDto.getFoods().isEmpty()) {
             throw new FoodItemNotFoundException(null,

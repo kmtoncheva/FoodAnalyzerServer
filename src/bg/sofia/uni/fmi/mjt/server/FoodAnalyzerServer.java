@@ -22,6 +22,8 @@ import java.nio.channels.SocketChannel;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,6 +32,7 @@ import static bg.sofia.uni.fmi.mjt.server.constants.ServerConstants.BUFFER_SIZE;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerConstants.HOST;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerConstants.EMPTY;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerConstants.PORT;
+import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.CHECK_AND_TRY_LATER_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.CLIENT_DISCONNECTED_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.DISAPPROVED_REQUEST;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.ERROR_CLOSING_CONNECTION_MSG;
@@ -42,7 +45,6 @@ import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SERV
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SERVER_FAILED_TO_RECOGNIZE_CMD_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.SERVER_STARTED_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.TRY_AGAIN_LATER_MSG;
-import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.UNABLE_TO_PROCESS_BARCODE_IMAGE_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.UNKNOWN_CMD_MSG;
 
 /**
@@ -53,18 +55,18 @@ import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.UNKN
 public class FoodAnalyzerServer {
     private boolean isServerWorking;
     private Selector selector;
+    private final Set<SocketChannel> connectedClients = ConcurrentHashMap.newKeySet();
+    private static final Logger LOGGER = LoggerUtil.createLogger(FoodAnalyzerServer.class.getName());
+    private final CommandFactory commandFactory;
 
     /**
-     * Maintains the read and write buffers for a connected client.
+     * Maintains the read and write buffers per connected client.
      */
     private static class ClientContext {
         ByteBuffer readBuffer = ByteBuffer.allocateDirect(BUFFER_SIZE); // the input that comes from the client
         // will not exceed Buffer Size
         ByteBuffer writeBuffer = null; // the output size can not be predicted
     }
-
-    private static final Logger LOGGER = LoggerUtil.createLogger(FoodAnalyzerServer.class.getName());
-    private final CommandFactory commandFactory;
 
     public FoodAnalyzerServer(CommandFactory commandFactory) {
         if (commandFactory == null) {
@@ -104,6 +106,22 @@ public class FoodAnalyzerServer {
             System.out.println(SERVER_FAILED_TO_START_ERROR_MSG + SEE_LOGS_MSG);
         }
 
+    }
+
+    /**
+     * Gracefully stops the server.
+     * This method is intended to be called during application shutdown, such as within a JVM shutdown hook,
+     * to ensure that the server and its client connections are properly cleaned up.
+     */
+    public void stop() {
+        this.isServerWorking = false;
+        if (selector != null && selector.isOpen()) {
+            selector.wakeup();
+        }
+
+        for (SocketChannel client : connectedClients) {
+            closeChannelSilently(client);
+        }
     }
 
     private void configureServer(ServerSocketChannel serverSocketChannel) throws IOException {
@@ -151,6 +169,7 @@ public class FoodAnalyzerServer {
 
         ClientContext clientContext = new ClientContext();
         clientChannel.register(selector, SelectionKey.OP_READ, clientContext);
+        connectedClients.add(clientChannel);
     }
 
     private String getClientInput(SocketChannel clientChannel, ByteBuffer byteBuffer) throws IOException {
@@ -207,7 +226,7 @@ public class FoodAnalyzerServer {
         } catch (BarcodeReaderException e) {
             LOGGER.log(Level.WARNING, e.getMessage(), e);
 
-            return ServerResponseDto.error(UNABLE_TO_PROCESS_BARCODE_IMAGE_MSG + TRY_AGAIN_LATER_MSG);
+            return ServerResponseDto.error(e.getMessage() + CHECK_AND_TRY_LATER_MSG);
         }
     }
 
@@ -224,6 +243,7 @@ public class FoodAnalyzerServer {
     private void closeChannelSilently(SocketChannel channel) {
         try {
             channel.close();
+            connectedClients.remove(channel);
         } catch (IOException e) {
             LOGGER.log(Level.SEVERE, ERROR_CLOSING_CONNECTION_MSG, e);
         }
@@ -251,14 +271,6 @@ public class FoodAnalyzerServer {
         } else {
             context.writeBuffer = null;
             key.interestOps(key.interestOps() & ~SelectionKey.OP_WRITE); // writing done
-        }
-    }
-
-
-    private void stop() {
-        this.isServerWorking = false;
-        if (selector.isOpen()) {
-            selector.wakeup();
         }
     }
 }

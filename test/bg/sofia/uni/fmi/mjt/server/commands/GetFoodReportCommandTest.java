@@ -3,6 +3,7 @@ package bg.sofia.uni.fmi.mjt.server.commands;
 import bg.sofia.uni.fmi.mjt.server.dto.model.LabelNutrientsDto;
 import bg.sofia.uni.fmi.mjt.server.dto.model.NutrientDto;
 import bg.sofia.uni.fmi.mjt.server.dto.model.ReportFoodItemDto;
+import bg.sofia.uni.fmi.mjt.server.exceptions.BarcodeReaderException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.FoodItemNotFoundException;
 import bg.sofia.uni.fmi.mjt.server.service.FoodService;
@@ -22,7 +23,7 @@ public class GetFoodReportCommandTest {
     Command command = new GetFoodReportCommand(fcdId, foodService);
 
     @Test
-    void testExecuteWithFood() throws ApiException {
+    void testExecuteWithFood() throws ApiException, BarcodeReaderException {
         NutrientDto calories = new NutrientDto();
         calories.setValue(250.0f);
         NutrientDto protein = new NutrientDto();

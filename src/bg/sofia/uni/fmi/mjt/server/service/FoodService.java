@@ -22,7 +22,7 @@ public interface FoodService {
      * @throws MalformedRequestBodyException if the API response JSON is malformed or cannot be deserialized
      * @throws ApiException                  if a general API error occurs (e.g., invalid request, network issue)
      */
-    SearchApiResponseDto searchFood(String[] keywords) throws ApiException;
+    SearchApiResponseDto searchFoodByKeywords(String[] keywords) throws ApiException;
 
     /**
      * Retrieves a detailed report for a specific food item using its unique FDC ID.
@@ -38,5 +38,15 @@ public interface FoodService {
      */
     ReportFoodItemDto getFoodReport(String fdcId) throws ApiException;
 
+    /**
+     * Retrieves a detailed report for a specific 'branded' food item by its unique gtinUpc code.
+     * The item's gtinUpc corresponding to an ID should be stored in the cache in advance (from previous requests).
+     * After retrieving the ID from the cache the food is searched by it with the method above - in the cache if
+     * present or sending new http request to the external API.
+     *
+     * @param gtinUpc the unique code every 'branded' food should have - it consists of numeric characters only.
+     * @return a {@link ReportFoodItemDto} representing the retrieved food item report
+     * @throws ApiException if the item is missing, undocumented, or an HTTP error occurs
+     */
     ReportFoodItemDto getFoodByBarcode(String gtinUpc) throws ApiException;
 }

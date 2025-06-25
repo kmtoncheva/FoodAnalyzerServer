@@ -1,5 +1,6 @@
 package bg.sofia.uni.fmi.mjt.server.commands;
 
+import bg.sofia.uni.fmi.mjt.server.exceptions.ConfigurationException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.InvalidCommandException;
 import bg.sofia.uni.fmi.mjt.server.service.FoodService;
 import org.junit.jupiter.api.Test;
@@ -9,7 +10,14 @@ import static org.mockito.Mockito.*;
 
 public class CommandFactoryTest {
     private FoodService foodServiceMock = mock(FoodService.class);;
-    private CommandFactory factory = new CommandFactory(foodServiceMock);;
+    private CommandFactory factory = new CommandFactory(foodServiceMock);
+
+    @Test
+    void testConstructorWithInvalidService() {
+        ConfigurationException exception = assertThrows(ConfigurationException.class, () -> {
+            new CommandFactory(null);
+        });
+    }
 
     @Test
     void testCreateWithGetFoodCommand() throws Exception {
@@ -24,7 +32,7 @@ public class CommandFactoryTest {
         String json = "{\"command\":\"get-food-report\", \"args\":\"12345\"}";
         Command<?> command = factory.create(json);
 
-        assertTrue(command instanceof GetFoodReportCommandTest, "Should create a get-food-report command instance on valid input.");
+        assertTrue(command instanceof GetFoodReportCommand, "Should create a get-food-report command instance on valid input.");
     }
     @Test
     void testCreateGetFoodByBarcodeCommand() throws Exception {
@@ -53,14 +61,13 @@ public class CommandFactoryTest {
     void testCreateWithInvalidJsonSyntax() {
         String invalidJson = "{not valid json}";
 
-        assertThrows(RuntimeException.class, () -> factory.create(invalidJson), "Should throw a Runtime exception with invalid JSON syntax.");
+        assertThrows(InvalidCommandException.class, () -> factory.create(invalidJson), "Should throw a Runtime exception with invalid JSON syntax.");
     }
 
     @Test
     void testCreateWithMissingCommandField() {
         String jsonMissingCommand = "{\"args\":[]}";
 
-        assertThrows(RuntimeException.class, () -> factory.create(jsonMissingCommand), "Should throw a Runtime exception ");
+        assertThrows(InvalidCommandException.class, () -> factory.create(jsonMissingCommand), "Should throw a Runtime exception ");
     }
-
 }

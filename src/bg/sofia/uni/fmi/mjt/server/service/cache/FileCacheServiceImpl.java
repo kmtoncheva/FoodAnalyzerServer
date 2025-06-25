@@ -11,6 +11,7 @@ import java.io.Writer;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -27,6 +28,7 @@ import static bg.sofia.uni.fmi.mjt.server.constants.CacheConstants.INDEX_DIR_NAM
 import static bg.sofia.uni.fmi.mjt.server.constants.CacheConstants.INDEX_FILE_NAME;
 import static bg.sofia.uni.fmi.mjt.server.constants.CacheConstants.JSON_FILE_EXTENSION;
 import static bg.sofia.uni.fmi.mjt.server.constants.CacheConstants.ONE_SMB_LEN;
+import static bg.sofia.uni.fmi.mjt.server.constants.CacheConstants.PATH_CANNOT_BE_RESOLVED_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.CacheConstants.REGEX_REPLACEMENT;
 import static bg.sofia.uni.fmi.mjt.server.constants.CacheConstants.REGEX_TO_REPLACE;
 import static bg.sofia.uni.fmi.mjt.server.constants.CacheConstants.SECOND_IND;
@@ -48,10 +50,27 @@ public final class FileCacheServiceImpl implements CacheService {
 
     private final Gson gson = new Gson();
 
+    /**
+     * Constructs a new {@code FileCacheServiceImpl} with the specified base directory for storing cached data.
+     * <p>
+     * This constructor initializes the main cache directory, a dedicated subdirectory for the cache index,
+     * and an index file used to map GTIN/UPC codes to food item IDs. If the specified directory does not exist,
+     * it will be created along with the index directory. The method also attempts to load any existing index
+     * mappings from the index file during initialization.
+     * </p>
+     *
+     * @param baseCacheDirName the name of the base directory used to store files for the food reports and index data.
+     * @throws CacheException if the base or index directory cannot be created, or if the path is invalid or
+     *                        there is an error loading the index file
+     */
     public FileCacheServiceImpl(String baseCacheDirName) throws CacheException {
-        this.baseCacheDir = Paths.get(baseCacheDirName);
-        this.indexDir = baseCacheDir.resolve(INDEX_DIR_NAME);
-        this.indexFile = indexDir.resolve(INDEX_FILE_NAME + JSON_FILE_EXTENSION);
+        try {
+            this.baseCacheDir = Paths.get(baseCacheDirName);
+            this.indexDir = baseCacheDir.resolve(INDEX_DIR_NAME);
+            this.indexFile = indexDir.resolve(INDEX_FILE_NAME + JSON_FILE_EXTENSION);
+        } catch (InvalidPathException e) {
+            throw new CacheException(FAILED_TO_CREATE_CACHE_DIR_MSG + PATH_CANNOT_BE_RESOLVED_MSG, e);
+        }
 
         try {
             Files.createDirectories(baseCacheDir);
@@ -62,8 +81,14 @@ public final class FileCacheServiceImpl implements CacheService {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * <p>
+     * This implementation stores the data on the file system in a structured directory layout.
+     * It uses a lock to ensure thread-safe access per key and caches the result to avoid redundant fetches.
+     */
     @Override
-    public String getById(String key, FetchFunction fetcher) throws IOException, ApiException {
+    public String getReportById(String key, FetchFunction fetcher) throws IOException, ApiException {
         Path filePath = getPathForKey(key);
         ReentrantLock lock = locks.computeIfAbsent(key, k -> new ReentrantLock());
 
@@ -85,15 +110,25 @@ public final class FileCacheServiceImpl implements CacheService {
         }
     }
 
-    @Override
-    public void addToIndex(Map<String, String> gtinToIdMap) throws CacheException {
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Storing the gtinUpc values and their corresponding IDs in a {@link ConcurrentHashMap} to be easily retrieved.
+     */
+    public void persistGtinToIdIndex(Map<String, String> gtinToIdMap) throws CacheException {
+        if(gtinToIdMap.isEmpty()) {
+            return;
+        }
+
         gtinToIdIndex.putAll(gtinToIdMap);
-        saveIndexToFile(); // persist index change to disk
+        saveIndexToFile();
     }
 
-    @Override
+    /**
+     * {@inheritDoc}
+     */
     public String getIdFromIndex(String gtinUpc) {
-        if (gtinToIdIndex.containsKey(gtinUpc)) {
+        if (gtinUpc != null && gtinToIdIndex.containsKey(gtinUpc)) {
             return gtinToIdIndex.get(gtinUpc);
         }
         return null;
@@ -127,7 +162,7 @@ public final class FileCacheServiceImpl implements CacheService {
         }
     }
 
-    private Path getPathForKey(String key) {
+    Path getPathForKey(String key) {
         String safeKey = key.replaceAll(REGEX_TO_REPLACE, REGEX_REPLACEMENT);
         String hash = Integer.toHexString(safeKey.hashCode());
         String subDir1 = hash.length() > ONE_SMB_LEN ? hash.substring(FIRST_IND, SECOND_IND) : DEFAULT_SUBDIR_NAME;

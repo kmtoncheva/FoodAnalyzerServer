@@ -45,5 +45,6 @@ public final class LoggerUtil {
         return logger;
     }
 
-    private LoggerUtil() {}
+    private LoggerUtil() {
+    }
 }

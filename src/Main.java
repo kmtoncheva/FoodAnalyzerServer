@@ -9,6 +9,9 @@ import bg.sofia.uni.fmi.mjt.server.service.cache.CacheService;
 import bg.sofia.uni.fmi.mjt.server.service.cache.FileCacheServiceImpl;
 import bg.sofia.uni.fmi.mjt.server.service.FoodService;
 import bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl;
+import bg.sofia.uni.fmi.mjt.server.utility.UrlUtil;
+
+import java.net.http.HttpClient;
 
 import static bg.sofia.uni.fmi.mjt.server.constants.CacheConstants.FAILED_TO_CREATE_CACHE_WARNING;
 
@@ -17,8 +20,10 @@ import static bg.sofia.uni.fmi.mjt.server.constants.CacheConstants.FAILED_TO_CRE
 public class Main {
     private static final String CACHE_NAME = "cache";
 
-    public static void main(String[] args) throws ApiException {
-        HttpService httpService = new HttpServiceImpl();
+    public static void main(String[] args) {
+        HttpClient httpClient = HttpClient.newBuilder().build();
+
+        HttpService httpService = new HttpServiceImpl(httpClient);
         CacheService cacheService;
 
         try {
@@ -32,6 +37,8 @@ public class Main {
         FoodService foodService = new FoodServiceImpl(httpService, cacheService);
         CommandFactory factory = new CommandFactory(foodService);
         FoodAnalyzerServer server = new FoodAnalyzerServer(factory);
+
+        Runtime.getRuntime().addShutdownHook(new Thread(server::stop));
         server.start();
     }
 }

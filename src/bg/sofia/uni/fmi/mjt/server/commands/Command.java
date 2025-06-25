@@ -2,7 +2,6 @@ package bg.sofia.uni.fmi.mjt.server.commands;
 
 import bg.sofia.uni.fmi.mjt.server.dto.model.FoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.exceptions.BarcodeReaderException;
-import bg.sofia.uni.fmi.mjt.server.exceptions.CacheException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 /**
  * Represents a command that can be executed on the server side, typically in response to a client request.
  * Each implementation of this interface should encapsulate the logic for handling a specific type of operation,
- * such as retrieving a report or performing a search.
+ * such as retrieving a report or performing a specific search.
  * <p>
  * This interface is generic and can be used with any type that extends {@link FoodItemDto}.
  *
@@ -23,9 +22,10 @@ public interface Command<T extends FoodItemDto> {
      * Implementations may interact with external APIs or internal services to retrieve the required data.
      *
      * @return a list of {@code T} representing the result of the command execution;
-     * may return {@code null} for terminating commands like "quit"
-     * @throws ApiException if an error occurs during execution, such as an external API failure,
-     *                      invalid input, or no matching items found (to enable uniform error handling)
+     * may return {@code null} for terminating commands like "quit".
+     * @throws ApiException           if an error occurs during execution, such as an external API failure,
+     *                                invalid input, or no matching items found.
+     * @throws BarcodeReaderException if an error occurs while reading a barcode.
      */
     List<T> execute() throws ApiException, BarcodeReaderException;
 
