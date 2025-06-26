@@ -1,7 +1,11 @@
 package bg.sofia.uni.fmi.mjt.server.exceptions.api;
 
-/*
- * използва се, когато и /v1/food/{fdcId} и /v1/foods/search върнат 400
+/**
+ * Exception indicating that the request sent to the USDA FoodData Central API was invalid and rejected with a 400 Bad Request.
+ * <p>
+ * This typically occurs when the client request contains malformed or unsupported parameters.
+ * <p>
+ * This exception wraps both a log message for backend diagnostics and a client-facing message to be returned.
  */
 public class InvalidApiRequestException extends ApiException {
 

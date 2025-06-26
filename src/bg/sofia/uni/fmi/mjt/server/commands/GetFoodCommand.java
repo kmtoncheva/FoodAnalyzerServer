@@ -22,7 +22,7 @@ public final class GetFoodCommand implements Command<SearchFoodItemDto> {
      * Constructs a {@code GetFoodCommand} with the given search tokens and food service.
      *
      * @param tokens      the array of keywords from the client
-     * @param foodService the service responsible for making API calls to retrieve food information
+     * @param foodService the service responsible for business logic for making API calls to retrieve food information
      */
     public GetFoodCommand(String[] tokens, FoodService foodService) {
         this.tokens = tokens;
@@ -30,7 +30,7 @@ public final class GetFoodCommand implements Command<SearchFoodItemDto> {
     }
 
     /**
-     * Executes the command to search for food items based on the provided tokens.
+     * {@inheritDoc}
      * <p>
      * This method delegates the search request to the {@link FoodService}, which
      * returns a parsed {@link SearchApiResponseDto}. If no matching food items

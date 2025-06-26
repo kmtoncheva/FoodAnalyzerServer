@@ -1,15 +1,17 @@
 package bg.sofia.uni.fmi.mjt.server.enums;
 
 /**
- *
- * types of response that the service can send to the client :
- *  1. The request is okay + results from it (THE MESSAGE WILL BE IMPORTANT FOR THE CLIENT - it will display all
- *  fetch foods, there will be at least one food for the get-food command and one food for the get-food-report command)
- *  2. The request was not okay due to your fault or service fault, in both cases everything will be logged and
- *  the client will see a proper message (THE MESSAGE WILL BE IMPORTANT FOR THE CLIENT - it will explain the error)
- *  3. The request is okay but the searched item - with id or keywords will be missing. The message will be empty.
- *  (The client should interpreter it with a user-friendly message that the item/s searched is/are not available).
+ * Enum representing the types of responses the server can send to the client.
+ * <p>
+ * Each type indicates the result of a client command execution:
+ * <ul>
+ *     <li>{@link #OK} – The request was successful and may include one or more food items.<li/>
+ *     <li>{@link #ERROR} – The request failed due to a client or server-side issue.
+ *     The {@code message} will contain an explanation of the failure.</li>
+ *     <li>{@link #NOT_FOUND} – The request was valid, but the searched item (by name or ID) was not found.<li/>
+ * </ul>
  */
+
 public enum ResponseStatusType {
     OK,
     ERROR,

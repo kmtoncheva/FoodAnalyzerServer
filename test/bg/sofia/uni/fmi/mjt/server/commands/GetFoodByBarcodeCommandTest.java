@@ -48,7 +48,7 @@ public class GetFoodByBarcodeCommandTest {
         try (MockedStatic<BarcodeReaderUtil> mockedStatic = Mockito.mockStatic(BarcodeReaderUtil.class)) {
 
             GetFoodByBarcodeCommand command = new GetFoodByBarcodeCommand(params, foodServiceMock);
-            List<FoodItemDto> result = command.execute();
+            List<ReportFoodItemDto> result = command.execute();
 
             assertNotNull(result);
             assertEquals(1, result.size());
@@ -74,11 +74,11 @@ public class GetFoodByBarcodeCommandTest {
                 .thenReturn("barcodeFromImage");
             GetFoodByBarcodeCommand command = new GetFoodByBarcodeCommand(params, foodServiceMock);
 
-            List<FoodItemDto> result = command.execute();
+            List<ReportFoodItemDto> result = command.execute();
 
             assertNotNull(result);
             assertEquals(1, result.size());
-            assertSame(mockedFoodItem, result.get(0));
+            assertSame(mockedFoodItem, result.getFirst());
             verify(foodServiceMock).getFoodByBarcode("barcodeFromImage");
             mockedStatic.verify(() -> BarcodeReaderUtil.readBarcodeFromFile(any(File.class)), times(1));
         }

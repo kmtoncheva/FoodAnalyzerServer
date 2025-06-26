@@ -29,3 +29,378 @@ INFO: Server started and listening on port 52525
 INFO: Server started and listening on port 52525
 юни 24, 2025 10:02:57 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
 INFO: Server started and listening on port 52525
+юни 26, 2025 6:03:31 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 26, 2025 7:27:53 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer configureServer
+INFO: Server started and listening on port 52525
+юни 26, 2025 7:29:13 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:435)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:29:16 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:29:52 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:32:00 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer executeCommand
+SEVERE: IOException occurred during HTTP request: null
+bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiServiceUnavailableException: IOException occurred during HTTP request: null
+	at bg.sofia.uni.fmi.mjt.server.service.http.HttpServiceImpl.get(HttpServiceImpl.java:77)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.fetchSearchResultsFromApi(FoodServiceImpl.java:133)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.searchFoodByKeywords(FoodServiceImpl.java:69)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodCommand.execute(GetFoodCommand.java:46)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.executeCommand(FoodAnalyzerServer.java:217)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:202)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:154)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:956)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:133)
+	at bg.sofia.uni.fmi.mjt.server.service.http.HttpServiceImpl.executeRequest(HttpServiceImpl.java:95)
+	at bg.sofia.uni.fmi.mjt.server.service.http.HttpServiceImpl.get(HttpServiceImpl.java:65)
+	... 8 more
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1069)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:227)
+	at java.net.http/jdk.internal.net.http.AsyncSSLConnection.connectAsync(AsyncSSLConnection.java:56)
+	at java.net.http/jdk.internal.net.http.Http2Connection.createAsync(Http2Connection.java:472)
+	at java.net.http/jdk.internal.net.http.Http2ClientImpl.getConnectionFor(Http2ClientImpl.java:134)
+	at java.net.http/jdk.internal.net.http.ExchangeImpl.get(ExchangeImpl.java:94)
+	at java.net.http/jdk.internal.net.http.Exchange.establishExchange(Exchange.java:386)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl0(Exchange.java:570)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl(Exchange.java:423)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsync(Exchange.java:415)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:445)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$7(MultiExchange.java:487)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:978)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:994)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2416)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:477)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsync0$2(MultiExchange.java:365)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1194)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:554)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1817)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$DelegatingExecutor.execute(HttpClientImpl.java:178)
+	at java.base/java.util.concurrent.CompletableFuture.completeAsync(CompletableFuture.java:2763)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsync(MultiExchange.java:318)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.sendAsync(HttpClientImpl.java:1052)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:934)
+	... 11 more
+Caused by: java.nio.channels.UnresolvedAddressException
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:137)
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:145)
+	at java.base/sun.nio.ch.SocketChannelImpl.checkRemote(SocketChannelImpl.java:929)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:952)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$1(PlainHttpConnection.java:210)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:212)
+	... 34 more
+
+юни 26, 2025 7:32:00 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:32:03 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer executeCommand
+SEVERE: IOException occurred during HTTP request: null
+bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiServiceUnavailableException: IOException occurred during HTTP request: null
+	at bg.sofia.uni.fmi.mjt.server.service.http.HttpServiceImpl.get(HttpServiceImpl.java:77)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.fetchSearchResultsFromApi(FoodServiceImpl.java:133)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.searchFoodByKeywords(FoodServiceImpl.java:69)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodCommand.execute(GetFoodCommand.java:46)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.executeCommand(FoodAnalyzerServer.java:217)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:202)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:154)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:956)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:133)
+	at bg.sofia.uni.fmi.mjt.server.service.http.HttpServiceImpl.executeRequest(HttpServiceImpl.java:95)
+	at bg.sofia.uni.fmi.mjt.server.service.http.HttpServiceImpl.get(HttpServiceImpl.java:65)
+	... 8 more
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1069)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:227)
+	at java.net.http/jdk.internal.net.http.AsyncSSLConnection.connectAsync(AsyncSSLConnection.java:56)
+	at java.net.http/jdk.internal.net.http.Http2Connection.createAsync(Http2Connection.java:472)
+	at java.net.http/jdk.internal.net.http.Http2ClientImpl.getConnectionFor(Http2ClientImpl.java:134)
+	at java.net.http/jdk.internal.net.http.ExchangeImpl.get(ExchangeImpl.java:94)
+	at java.net.http/jdk.internal.net.http.Exchange.establishExchange(Exchange.java:386)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl0(Exchange.java:570)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl(Exchange.java:423)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsync(Exchange.java:415)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:445)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$7(MultiExchange.java:487)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:978)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:994)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2416)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:477)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsync0$2(MultiExchange.java:365)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1194)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:554)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1817)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$DelegatingExecutor.execute(HttpClientImpl.java:178)
+	at java.base/java.util.concurrent.CompletableFuture.completeAsync(CompletableFuture.java:2763)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsync(MultiExchange.java:318)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.sendAsync(HttpClientImpl.java:1052)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:934)
+	... 11 more
+Caused by: java.nio.channels.UnresolvedAddressException
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:137)
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:145)
+	at java.base/sun.nio.ch.SocketChannelImpl.checkRemote(SocketChannelImpl.java:929)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:952)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$1(PlainHttpConnection.java:210)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:212)
+	... 34 more
+
+юни 26, 2025 7:32:03 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:32:22 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:33:10 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:33:44 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:33:56 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer executeCommand
+SEVERE: IOException occurred during HTTP request: null
+bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiServiceUnavailableException: IOException occurred during HTTP request: null
+	at bg.sofia.uni.fmi.mjt.server.service.http.HttpServiceImpl.get(HttpServiceImpl.java:77)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.fetchReportFromApi(FoodServiceImpl.java:140)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.lambda$getReport$0(FoodServiceImpl.java:122)
+	at bg.sofia.uni.fmi.mjt.server.service.cache.FileCacheServiceImpl.getReportById(FileCacheServiceImpl.java:101)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getReport(FoodServiceImpl.java:122)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:95)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:41)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.executeCommand(FoodAnalyzerServer.java:217)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:202)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:154)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:956)
+	at java.net.http/jdk.internal.net.http.HttpClientFacade.send(HttpClientFacade.java:133)
+	at bg.sofia.uni.fmi.mjt.server.service.http.HttpServiceImpl.executeRequest(HttpServiceImpl.java:95)
+	at bg.sofia.uni.fmi.mjt.server.service.http.HttpServiceImpl.get(HttpServiceImpl.java:65)
+	... 11 more
+Caused by: java.net.ConnectException
+	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1069)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:227)
+	at java.net.http/jdk.internal.net.http.AsyncSSLConnection.connectAsync(AsyncSSLConnection.java:56)
+	at java.net.http/jdk.internal.net.http.Http2Connection.createAsync(Http2Connection.java:472)
+	at java.net.http/jdk.internal.net.http.Http2ClientImpl.getConnectionFor(Http2ClientImpl.java:134)
+	at java.net.http/jdk.internal.net.http.ExchangeImpl.get(ExchangeImpl.java:94)
+	at java.net.http/jdk.internal.net.http.Exchange.establishExchange(Exchange.java:386)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl0(Exchange.java:570)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsyncImpl(Exchange.java:423)
+	at java.net.http/jdk.internal.net.http.Exchange.responseAsync(Exchange.java:415)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:445)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsyncImpl$7(MultiExchange.java:487)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:978)
+	at java.base/java.util.concurrent.CompletableFuture.uniHandleStage(CompletableFuture.java:994)
+	at java.base/java.util.concurrent.CompletableFuture.handle(CompletableFuture.java:2416)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsyncImpl(MultiExchange.java:477)
+	at java.net.http/jdk.internal.net.http.MultiExchange.lambda$responseAsync0$2(MultiExchange.java:365)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1194)
+	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:554)
+	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1817)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$DelegatingExecutor.execute(HttpClientImpl.java:178)
+	at java.base/java.util.concurrent.CompletableFuture.completeAsync(CompletableFuture.java:2763)
+	at java.net.http/jdk.internal.net.http.MultiExchange.responseAsync(MultiExchange.java:318)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.sendAsync(HttpClientImpl.java:1052)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl.send(HttpClientImpl.java:934)
+	... 14 more
+Caused by: java.nio.channels.UnresolvedAddressException
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:137)
+	at java.base/sun.nio.ch.Net.checkAddress(Net.java:145)
+	at java.base/sun.nio.ch.SocketChannelImpl.checkRemote(SocketChannelImpl.java:929)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:952)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$1(PlainHttpConnection.java:210)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:571)
+	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:212)
+	... 37 more
+
+юни 26, 2025 7:33:56 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:34:05 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:35:48 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:35:50 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:37:33 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:38:04 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:38:05 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer executeCommand
+SEVERE: Bad request sent to external API: {"timestamp":"2025-06-26T16:38:05.899+0000","status":400,"error":"Bad Request","message":"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \"abc123\"","path":"/portal-data/api/v1/food/abc123"}
+bg.sofia.uni.fmi.mjt.server.exceptions.api.InvalidApiRequestException: Bad request sent to external API: {"timestamp":"2025-06-26T16:38:05.899+0000","status":400,"error":"Bad Request","message":"Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \"abc123\"","path":"/portal-data/api/v1/food/abc123"}
+	at bg.sofia.uni.fmi.mjt.server.service.http.HttpServiceImpl.get(HttpServiceImpl.java:68)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.fetchReportFromApi(FoodServiceImpl.java:140)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.lambda$getReport$0(FoodServiceImpl.java:122)
+	at bg.sofia.uni.fmi.mjt.server.service.cache.FileCacheServiceImpl.getReportById(FileCacheServiceImpl.java:101)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getReport(FoodServiceImpl.java:122)
+	at bg.sofia.uni.fmi.mjt.server.service.FoodServiceImpl.getFoodReport(FoodServiceImpl.java:95)
+	at bg.sofia.uni.fmi.mjt.server.commands.GetFoodReportCommand.execute(GetFoodReportCommand.java:41)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.executeCommand(FoodAnalyzerServer.java:217)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processInput(FoodAnalyzerServer.java:202)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:154)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:38:37 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:42:20 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+
+юни 26, 2025 7:42:21 СЛ.ОБ. bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer start
+WARNING: Error while processing client request.
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:403)
+	at java.base/sun.nio.ch.SocketChannelImpl.implRead(SocketChannelImpl.java:419)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:493)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.getClientInput(FoodAnalyzerServer.java:177)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.processRequest(FoodAnalyzerServer.java:149)
+	at bg.sofia.uni.fmi.mjt.server.FoodAnalyzerServer.start(FoodAnalyzerServer.java:97)
+	at Main.main(Main.java:42)
+

@@ -1,7 +1,9 @@
 package bg.sofia.uni.fmi.mjt.server.constants;
 
-import com.beust.ah.A;
-
+/**
+ * Defines constant string messages used throughout the server application
+ * for logging, error reporting, and user communication.
+ */
 public final class ServerMessagesConstants {
     // common messages
     public static final String SERVER_STARTED_MSG = "Server started and listening on port ";
@@ -21,7 +23,7 @@ public final class ServerMessagesConstants {
     // commands error messages
     public static final String UNKNOWN_CMD_MSG = "Received unknown command from client: ";
     public static final String SERVER_FAILED_TO_RECOGNIZE_CMD_MSG = "Server failed to recognize the command. ";
-    public static final String INVALID_CMD_FORMAT =  "Invalid command format: ";
+    public static final String INVALID_CMD_FORMAT = "Invalid command format: ";
     public static final String INVALID_ARG_TYPE = "Invalid argument type: ";
 
     // client requests error messages
@@ -40,7 +42,7 @@ public final class ServerMessagesConstants {
     public static final String FAILED_TO_RETRIEVE_REPORT_MSG =
         "Failed to retrieve report due to I/O error while accessing API.";
     public static final String BAD_RQST_TO_API_MSG = "Bad request sent to external API: ";
-    public static final String INVALID_RQST_PARAMETERS_MSG =  "Your request parameters are invalid. ";
+    public static final String INVALID_RQST_PARAMETERS_MSG = "Your request parameters are invalid. ";
     public static final String HTTP_RQST_EXCEOTION_MSG = "IOException occurred during HTTP request: ";
     public static final String UNABLE_TO_CONNECT_TO_API_MSG = "Unable to connect to FoodData Central API. ";
     public static final String INTERRUPTED_RQST_MSG = "Request was interrupted: ";
@@ -53,5 +55,6 @@ public final class ServerMessagesConstants {
     public static final String CACHE_FAILED_WARNING_MSG =
         "Warning: Cache service failed. Some operations may not work optimally.";
 
-    private ServerMessagesConstants() {}
+    private ServerMessagesConstants() {
+    }
 }

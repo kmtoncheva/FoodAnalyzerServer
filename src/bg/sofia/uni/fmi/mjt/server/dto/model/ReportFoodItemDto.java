@@ -5,11 +5,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Objects;
 
-import static bg.sofia.uni.fmi.mjt.server.constants.FoodDataContsants.REPORT_FOOD_ITEM;
-
+/**
+ * Represents a food item returned as a result of the {@code get-food-report <food_fdcId>} command.
+ * <p>
+ * Contains descriptive information about the food, its ingredients, and basic nutritional data
+ * parsed from the USDA FoodData Central API.
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class ReportFoodItemDto implements FoodItemDto{
+public final class ReportFoodItemDto implements FoodItemDto {
     private String description;
     private String ingredients;
     private LabelNutrientsDto labelNutrients;
@@ -48,15 +52,9 @@ public class ReportFoodItemDto implements FoodItemDto{
     }
 
     @Override
-    public String getFoodItem() {
-        return REPORT_FOOD_ITEM;
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ReportFoodItemDto)) return false;
-        ReportFoodItemDto that = (ReportFoodItemDto) o;
+        if (!(o instanceof ReportFoodItemDto that)) return false;
         return Objects.equals(description, that.description) &&
             Objects.equals(ingredients, that.ingredients) &&
             Objects.equals(labelNutrients, that.labelNutrients);

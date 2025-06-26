@@ -1,5 +1,9 @@
 package bg.sofia.uni.fmi.mjt.server.constants;
 
+/**
+ *  Defines constant values related to command parsing and handling.
+ *  Used to standardize the structure and recognized commands in the system.
+ */
 public final class CommandConstants {
     public static final String COMMAND_TITLE = "command";
     public static final String ARGS_TITLE = "args";

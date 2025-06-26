@@ -7,9 +7,8 @@ import java.util.Objects;
  * This DTO is commonly used for serialization and deserialization of nutrient data in JSON format.
  */
 public class NutrientDto {
-    private Float value; // Use wrapper for null-safety
-
-    public NutrientDto() {} // Required for Gson
+    private Float value;
+    public NutrientDto() {}
 
     public Float getValue() {
         return value;
@@ -22,8 +21,7 @@ public class NutrientDto {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof NutrientDto)) return false;
-        NutrientDto that = (NutrientDto) o;
+        if (!(o instanceof NutrientDto that)) return false;
         return Objects.equals(value, that.value);
     }
 

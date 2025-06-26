@@ -1,5 +1,8 @@
 package bg.sofia.uni.fmi.mjt.server.constants;
 
+/**
+ *  Contains constant values used for constructing HTTP requests to the USDA FoodData Central API.
+ */
 public final class HttpConstants {
     public static final String BASE_URL = "https://api.nal.usda.gov/fdc/v1";
     public static final String SEARCH_ENDPOINT = "/foods/search";

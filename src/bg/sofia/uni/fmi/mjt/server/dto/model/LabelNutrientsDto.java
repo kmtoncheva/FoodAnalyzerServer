@@ -28,11 +28,11 @@ public class LabelNutrientsDto {
     /**
      * Full constructor to initialize all nutrient values.
      *
-     * @param calories       the calorie content
-     * @param protein        the protein content
-     * @param fat            the fat content
-     * @param carbohydrates  the carbohydrate content
-     * @param fiber          the fiber content
+     * @param calories      the calorie content
+     * @param protein       the protein content
+     * @param fat           the fat content
+     * @param carbohydrates the carbohydrate content
+     * @param fiber         the fiber content
      */
     public LabelNutrientsDto(NutrientDto calories, NutrientDto protein, NutrientDto fat, NutrientDto carbohydrates,
                              NutrientDto fiber) {
@@ -86,8 +86,7 @@ public class LabelNutrientsDto {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof LabelNutrientsDto)) return false;
-        LabelNutrientsDto that = (LabelNutrientsDto) o;
+        if (!(o instanceof LabelNutrientsDto that)) return false;
         return Objects.equals(calories, that.calories) &&
             Objects.equals(protein, that.protein) &&
             Objects.equals(fat, that.fat) &&
@@ -99,5 +98,4 @@ public class LabelNutrientsDto {
     public int hashCode() {
         return Objects.hash(calories, protein, fat, carbohydrates, fiber);
     }
-
 }

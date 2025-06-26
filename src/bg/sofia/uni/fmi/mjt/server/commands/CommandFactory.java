@@ -1,6 +1,7 @@
 package bg.sofia.uni.fmi.mjt.server.commands;
 
 import bg.sofia.uni.fmi.mjt.server.dto.model.BarcodeDto;
+import bg.sofia.uni.fmi.mjt.server.dto.model.FoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.exceptions.ConfigurationException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.InvalidCommandException;
 import bg.sofia.uni.fmi.mjt.server.service.FoodService;
@@ -34,7 +35,7 @@ import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.MISC
  */
 public final class CommandFactory {
     private static final Gson gson = new Gson();
-    private static FoodService foodService;
+    private final FoodService foodService;
 
     /**
      * Constructs a new {@code CommandFactory} with the specified {@link FoodService} instance.
@@ -60,7 +61,7 @@ public final class CommandFactory {
      * @throws InvalidCommandException if the command type is not recognized, the JSON is invalid,
      *                                 or expected fields are missing or malformed
      */
-    public Command create(String json) throws InvalidCommandException {
+    public Command<? extends FoodItemDto> create(String json) throws InvalidCommandException {
         try {
             JsonObject obj = JsonParser.parseString(json).getAsJsonObject();
             String commandName = obj.get(COMMAND_TITLE).getAsString();

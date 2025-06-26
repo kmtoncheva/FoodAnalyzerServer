@@ -5,11 +5,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Objects;
 
-import static bg.sofia.uni.fmi.mjt.server.constants.FoodDataContsants.SEARCH_FOOD_ITEM;
-
+/**
+ * Represents a food item returned as a result of the {@code get-food <food name>} command.
+ * <p>
+ * Contains a unique FDC ID, a description, and a GTIN/UPC code if available (present only for
+ * branded food items). All data is extracted and parsed from the USDA FoodData Central API.
+ */
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SearchFoodItemDto implements FoodItemDto {
+public final class SearchFoodItemDto implements FoodItemDto {
     private String fdcId;
     private String description;
     private String gtinUpc;
@@ -25,8 +29,7 @@ public class SearchFoodItemDto implements FoodItemDto {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof SearchFoodItemDto)) return false;
-        SearchFoodItemDto that = (SearchFoodItemDto) o;
+        if (!(o instanceof SearchFoodItemDto that)) return false;
         return Objects.equals(fdcId, that.fdcId);
     }
 
@@ -45,10 +48,5 @@ public class SearchFoodItemDto implements FoodItemDto {
     @Override
     public int hashCode() {
         return Objects.hash(fdcId);
-    }
-
-    @Override
-    public String getFoodItem() {
-        return SEARCH_FOOD_ITEM;
     }
 }

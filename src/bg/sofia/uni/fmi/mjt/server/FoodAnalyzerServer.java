@@ -212,7 +212,7 @@ public class FoodAnalyzerServer {
         }
     }
 
-    private ServerResponseDto executeCommand(Command command) {
+    private ServerResponseDto executeCommand(Command<FoodItemDto> command) {
         try {
             List<FoodItemDto> apiFoods = command.execute();
 

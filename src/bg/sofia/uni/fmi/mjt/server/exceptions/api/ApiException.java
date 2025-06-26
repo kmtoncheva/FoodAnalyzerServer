@@ -1,5 +1,11 @@
 package bg.sofia.uni.fmi.mjt.server.exceptions.api;
 
+/**
+ * Abstract base exception class for USDA FoodData Central API-related errors.
+ * <p>
+ * Contains a log message intended for internal logging and a client message
+ * intended to be sent back to the client for user-friendly error reporting.
+ */
 public abstract class ApiException extends Exception {
     private final String clientMessage;
 
