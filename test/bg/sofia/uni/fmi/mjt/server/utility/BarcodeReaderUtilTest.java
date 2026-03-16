@@ -12,7 +12,7 @@ public class BarcodeReaderUtilTest {
     @Test
     void testReadBarcodeFromFileWithValidFile() throws BarcodeReaderException {
         File imageFile =
-            new File("C:\\Users\\Katina\\Desktop\\Java\\Project\\FoodAnalyzerServer\\test\\resources\\barcode.gif");
+            new File("test/resources/barcode.gif");
 
         String result = BarcodeReaderUtil.readBarcodeFromFile(imageFile);
         assertEquals("009800146130", result);
@@ -21,7 +21,7 @@ public class BarcodeReaderUtilTest {
     @Test
     void testReadBarcodeFromFileWithNoBarcodeFile() {
         File imageFile =
-            new File("C:\\Users\\Katina\\Desktop\\Java\\Project\\FoodAnalyzerServer\\test\\resources\\Black.png");
+            new File("test/resources/Black.png");
 
         Assertions.assertThrows(BarcodeReaderException.class, () -> {
             BarcodeReaderUtil.readBarcodeFromFile(imageFile);
@@ -31,7 +31,7 @@ public class BarcodeReaderUtilTest {
     @Test
     void testReadBarcodeFromFileWithInvalidFile() {
         File imageFile =
-            new File("C:\\Users\\Katina\\Desktop\\Java\\Project\\FoodAnalyzerServer\\test\\resources\\text.txt");
+            new File("test/resources/text.txt");
 
         Assertions.assertThrows(BarcodeReaderException.class, () -> {
             BarcodeReaderUtil.readBarcodeFromFile(imageFile);

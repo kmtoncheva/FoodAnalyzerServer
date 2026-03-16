@@ -199,7 +199,7 @@ public class FoodAnalyzerServer {
                 return;
             }
 
-            ServerResponseDto responseDto = executeCommand(command);
+             ServerResponseDto responseDto = executeCommand(command);
             sendResponse(channel, key, responseDto);
 
         } catch (InvalidCommandException e) {

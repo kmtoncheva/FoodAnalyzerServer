@@ -63,7 +63,7 @@ public class GetFoodByBarcodeCommandTest {
         BarcodeDto params = Mockito.mock(BarcodeDto.class);
         when(params.code()).thenReturn(null);
         when(params.imagePath()).thenReturn(
-            "C:\\Users\\Katina\\Desktop\\Java\\Project\\FoodAnalyzerServer\\test\\resources\\barcode.gif");
+            "C:\\Users\\ktoncheva\\JAVA\\FoodAnalyzerServer\\test\\resources\\barcode.gif");
 
         ReportFoodItemDto mockedFoodItem = Mockito.mock(ReportFoodItemDto.class);
         when(foodServiceMock.getFoodByBarcode("barcodeFromImage")).thenReturn(mockedFoodItem);
