@@ -3,6 +3,7 @@ package bg.sofia.uni.fmi.mjt.server.dto.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -17,6 +18,7 @@ public final class ReportFoodItemDto implements FoodItemDto {
     private String description;
     private String ingredients;
     private LabelNutrientsDto labelNutrients;
+    private List<NonBrandedFoodNutrientDto> foodNutrients; // NEW FIELD
 
     public ReportFoodItemDto() {
     }
@@ -25,6 +27,14 @@ public final class ReportFoodItemDto implements FoodItemDto {
         this.description = description;
         this.ingredients = ingredients;
         this.labelNutrients = labelNutrients;
+    }
+
+    public ReportFoodItemDto(String description, String ingredients, LabelNutrientsDto labelNutrients,
+                             List<NonBrandedFoodNutrientDto> foodNutrients) {
+        this.description = description;
+        this.ingredients = ingredients;
+        this.labelNutrients = labelNutrients;
+        this.foodNutrients = foodNutrients;
     }
 
     public String getDescription() {
@@ -39,6 +49,10 @@ public final class ReportFoodItemDto implements FoodItemDto {
         return labelNutrients;
     }
 
+    public List<NonBrandedFoodNutrientDto> getFoodNutrients() {
+        return foodNutrients;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -51,17 +65,22 @@ public final class ReportFoodItemDto implements FoodItemDto {
         this.labelNutrients = labelNutrients;
     }
 
+    public void setFoodNutrients(List<NonBrandedFoodNutrientDto> foodNutrients) {
+        this.foodNutrients = foodNutrients;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof ReportFoodItemDto that)) return false;
         return Objects.equals(description, that.description) &&
-            Objects.equals(ingredients, that.ingredients) &&
-            Objects.equals(labelNutrients, that.labelNutrients);
+                Objects.equals(ingredients, that.ingredients) &&
+                Objects.equals(labelNutrients, that.labelNutrients) &&
+                Objects.equals(foodNutrients, that.foodNutrients);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, ingredients, labelNutrients);
+        return Objects.hash(description, ingredients, labelNutrients, foodNutrients);
     }
 }

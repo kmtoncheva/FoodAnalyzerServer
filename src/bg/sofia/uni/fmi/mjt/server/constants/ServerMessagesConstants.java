@@ -27,9 +27,9 @@ public final class ServerMessagesConstants {
     public static final String INVALID_ARG_TYPE = "Invalid argument type: ";
 
     // client requests error messages
-    public static final String NO_MATCHING_FOODS_MSG = "No food items matched your search query: ";
-    public static final String NO_INFO_IN_THE_CACHE_MSG = "There is no information about this food in the cache.";
-    public static final String INVALID_JSON_PAYLOAD_MSG = "Invalid JSON payload: ";
+    public static final String NO_MATCHING_FOODS_MSG = "⚠ No food items matched your search query: ";
+    public static final String NO_INFO_IN_THE_CACHE_MSG = "⚠ There is no information about this food in the cache.";
+    public static final String INVALID_JSON_PAYLOAD_MSG = "⚠ Invalid JSON payload: ";
     public static final String NOT_WELL_DOCUMENTED_MSG =
         "The provided ID corresponds to a food that is not properly documented. We apologize for the inconvenience.";
     public static final String DISAPPROVED_REQUEST = "Invalid request format or unexpected internal error. ";

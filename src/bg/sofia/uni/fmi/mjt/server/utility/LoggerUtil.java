@@ -7,7 +7,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+import static bg.sofia.uni.fmi.mjt.server.constants.LoggerConstants.LOCK_EXTENSION;
 import static bg.sofia.uni.fmi.mjt.server.constants.LoggerConstants.LOG_FILE;
+import static bg.sofia.uni.fmi.mjt.server.constants.LoggerConstants.PATH_NAME;
 import static bg.sofia.uni.fmi.mjt.server.constants.LoggerConstants.SETUP_ERROR_MSG;
 
 /**
@@ -25,7 +27,7 @@ public final class LoggerUtil {
         Logger logger = Logger.getLogger(name);
         logger.setUseParentHandlers(false); // Avoid default console output
 
-        File logDir = new File("logs");
+        File logDir = new File(PATH_NAME);
         if (!logDir.exists()) {
             logDir.mkdirs();
         }
@@ -38,11 +40,28 @@ public final class LoggerUtil {
             logger.addHandler(fileHandler);
             logger.setLevel(Level.ALL);
 
+            // Add shutdown hook to clean up .lck files
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                fileHandler.close();
+                cleanupLockFiles();
+            }));
+
         } catch (IOException e) {
             System.err.println(SETUP_ERROR_MSG + e.getMessage());
         }
 
         return logger;
+    }
+    private static void cleanupLockFiles() {
+        File logDir = new File(PATH_NAME);
+        if (logDir.exists() && logDir.isDirectory()) {
+            File[] lockFiles = logDir.listFiles((dir, name) -> name.endsWith(LOCK_EXTENSION));
+            if (lockFiles != null) {
+                for (File lockFile : lockFiles) {
+                    lockFile.delete();
+                }
+            }
+        }
     }
 
     private LoggerUtil() {
