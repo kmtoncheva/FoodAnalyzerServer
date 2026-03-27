@@ -1,8 +1,8 @@
 package bg.sofia.uni.fmi.mjt.server.service;
 
+import bg.sofia.uni.fmi.mjt.server.dto.model.ReportFoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.service.cache.CacheService;
 import bg.sofia.uni.fmi.mjt.server.service.cache.FileCacheServiceImpl;
-import bg.sofia.uni.fmi.mjt.server.dto.model.ReportFoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.dto.model.SearchFoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.dto.response.SearchApiResponseDto;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;

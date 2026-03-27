@@ -1,7 +1,6 @@
 package bg.sofia.uni.fmi.mjt.server.commands;
 
 import bg.sofia.uni.fmi.mjt.server.dto.model.BarcodeDto;
-import bg.sofia.uni.fmi.mjt.server.dto.model.FoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.dto.model.ReportFoodItemDto;
 import bg.sofia.uni.fmi.mjt.server.exceptions.BarcodeReaderException;
 import bg.sofia.uni.fmi.mjt.server.exceptions.api.ApiException;

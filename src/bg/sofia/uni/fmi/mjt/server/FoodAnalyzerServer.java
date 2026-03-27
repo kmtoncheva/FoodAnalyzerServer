@@ -170,21 +170,30 @@ public class FoodAnalyzerServer {
         ClientContext clientContext = new ClientContext();
         clientChannel.register(selector, SelectionKey.OP_READ, clientContext);
         connectedClients.add(clientChannel);
+
+        // Log new client connection
+        LOGGER.info("New client connected: " + clientChannel.getRemoteAddress());
     }
 
     private String getClientInput(SocketChannel clientChannel, ByteBuffer byteBuffer) throws IOException {
         byteBuffer.clear();
-        int readBytes = clientChannel.read(byteBuffer);
-        if (readBytes < EMPTY) {  // means the client has disconnected
-            clientChannel.close();
-
-            return null; // Return null to signal to the server that this client is no longer active
+        try {
+            int readBytes = clientChannel.read(byteBuffer);
+            if (readBytes < EMPTY) {
+                clientChannel.close();
+                connectedClients.remove(clientChannel);
+                return null;
+            }
+        } catch (IOException e) {
+            // Client disconnected abruptly
+            LOGGER.info(CLIENT_DISCONNECTED_MSG);
+            closeChannelSilently(clientChannel);
+            return null;
         }
 
         byteBuffer.flip();
         byte[] clientInputBytes = new byte[byteBuffer.remaining()];
         byteBuffer.get(clientInputBytes);
-
 
         return new String(clientInputBytes, StandardCharsets.UTF_8);
     }

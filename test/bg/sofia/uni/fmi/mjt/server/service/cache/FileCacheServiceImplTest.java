@@ -29,7 +29,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-public class FileCacheServiceImpltest {
+public class FileCacheServiceImplTest {
     @TempDir
     Path tempDir;
 
