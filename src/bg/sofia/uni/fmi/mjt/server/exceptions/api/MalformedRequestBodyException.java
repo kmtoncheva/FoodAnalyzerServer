@@ -5,7 +5,7 @@ package bg.sofia.uni.fmi.mjt.server.exceptions.api;
  * <p>
  * This exception wraps both a log message for backend diagnostics and a client-facing message to be returned.
  */
-public class MalformedRequestBodyException extends ApiException{
+public class MalformedRequestBodyException extends ApiException {
     public MalformedRequestBodyException(String logMessage, String clientMessage) {
         super(logMessage, clientMessage);
     }

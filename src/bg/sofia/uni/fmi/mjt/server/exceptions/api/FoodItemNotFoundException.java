@@ -10,7 +10,7 @@ package bg.sofia.uni.fmi.mjt.server.exceptions.api;
  * </ul>
  * Contains both a log message for internal diagnostics and a client message for user-facing feedback.
  */
-public class FoodItemNotFoundException extends ApiException{
+public class FoodItemNotFoundException extends ApiException {
 
     public FoodItemNotFoundException(String logMessage, String clientMessage) {
         super(logMessage, clientMessage);

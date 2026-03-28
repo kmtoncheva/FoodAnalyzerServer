@@ -116,7 +116,7 @@ public final class FileCacheServiceImpl implements CacheService {
      * Storing the gtinUpc values and their corresponding IDs in a {@link ConcurrentHashMap} to be easily retrieved.
      */
     public void persistGtinToIdIndex(Map<String, String> gtinToIdMap) throws CacheException {
-        if(gtinToIdMap.isEmpty()) {
+        if (gtinToIdMap.isEmpty()) {
             return;
         }
 

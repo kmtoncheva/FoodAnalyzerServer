@@ -14,5 +14,5 @@ public final class CommandConstants {
 
     public static final String LINE_BREAK = "\n";
 
-    private CommandConstants() {}
+    private CommandConstants() { }
 }

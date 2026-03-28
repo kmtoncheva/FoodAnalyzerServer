@@ -9,6 +9,5 @@ public final class LoggerConstants {
     public static final String SETUP_ERROR_MSG = "Could not set up logger: ";
     public static final String LOCK_EXTENSION = ".lck";
 
-
-    private LoggerConstants() {}
+    private LoggerConstants() { }
 }

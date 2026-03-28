@@ -52,6 +52,7 @@ public final class LoggerUtil {
 
         return logger;
     }
+
     private static void cleanupLockFiles() {
         File logDir = new File(PATH_NAME);
         if (logDir.exists() && logDir.isDirectory()) {

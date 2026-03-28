@@ -9,5 +9,5 @@ public final class ServerConstants {
     public static final String HOST = "localhost";
     public static final int PORT = 52525;
 
-    private ServerConstants() {}
+    private ServerConstants() { }
 }

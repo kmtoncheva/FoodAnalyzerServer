@@ -24,7 +24,7 @@ public final class SearchFoodItemDto implements FoodItemDto {
         this.gtinUpc = gtinUpc;
     }
 
-    public SearchFoodItemDto() {}
+    public SearchFoodItemDto() { }
 
     @Override
     public boolean equals(Object o) {

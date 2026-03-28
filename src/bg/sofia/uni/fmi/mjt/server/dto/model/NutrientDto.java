@@ -8,7 +8,7 @@ import java.util.Objects;
  */
 public class NutrientDto {
     private Float value;
-    public NutrientDto() {}
+    public NutrientDto() { }
 
     public Float getValue() {
         return value;

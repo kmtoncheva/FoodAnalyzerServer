@@ -15,5 +15,5 @@ public final class HttpConstants {
     public static final String TARGET_DELIMITER = "+";
     public static final String REPLACEMENT_DELIMITER = "%20";
 
-    private HttpConstants() {}
+    private HttpConstants() { }
 }

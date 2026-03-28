@@ -17,10 +17,11 @@ import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.CHEC
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.HTTP_RQST_EXCEOTION_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.INTERRUPTED_RQST_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.INVALID_RQST_PARAMETERS_MSG;
-import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.MISCONFIGURED_FOOD_SERVER_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.MISCONFIGURED_HTTP_SERVICE_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.TRY_AGAIN_LATER_MSG;
 import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.UNABLE_TO_CONNECT_TO_API_MSG;
+import static java.net.HttpURLConnection.HTTP_BAD_REQUEST;
+import static java.net.HttpURLConnection.HTTP_NOT_FOUND;
 
 /**
  * Implementation of {@link HttpService} that performs HTTP GET requests
@@ -64,11 +65,11 @@ public final class HttpServiceImpl implements HttpService {
         try {
             HttpResponse<String> response = executeRequest(request);
 
-            if (response.statusCode() == 400) {
+            if (response.statusCode() == HTTP_BAD_REQUEST) {
                 throw new InvalidApiRequestException(BAD_RQST_TO_API_MSG + response.body(),
                     INVALID_RQST_PARAMETERS_MSG + CHECK_AND_TRY_LATER_MSG);
             }
-            if (response.statusCode() == 404) {
+            if (response.statusCode() == HTTP_NOT_FOUND) {
                 throw new FoodItemNotFoundException(null, null); // nothing to log if food is not present
             }
 

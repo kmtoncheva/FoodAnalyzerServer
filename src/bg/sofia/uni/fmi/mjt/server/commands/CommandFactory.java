@@ -34,7 +34,7 @@ import static bg.sofia.uni.fmi.mjt.server.constants.ServerMessagesConstants.MISC
  * If an unrecognized command is provided, an {@link InvalidCommandException} is thrown.
  */
 public final class CommandFactory {
-    private static final Gson gson = new Gson();
+    private static final Gson GSON = new Gson();
     private final FoodService foodService;
 
     /**
@@ -68,15 +68,15 @@ public final class CommandFactory {
 
             return switch (commandName) {
                 case GET_FOOD_CMD -> {
-                    String[] foodArgs = gson.fromJson(obj.get(ARGS_TITLE), String[].class);
+                    String[] foodArgs = GSON.fromJson(obj.get(ARGS_TITLE), String[].class);
                     yield new GetFoodCommand(foodArgs, foodService);
                 }
                 case GET_FOOD_REPORT_CMD -> {
-                    String reportArg = gson.fromJson(obj.get(ARGS_TITLE), String.class);
+                    String reportArg = GSON.fromJson(obj.get(ARGS_TITLE), String.class);
                     yield new GetFoodReportCommand(reportArg, foodService);
                 }
                 case GET_FOOD_BY_BARCODE_CMD -> {
-                    BarcodeDto params = gson.fromJson(obj.get(ARGS_TITLE), BarcodeDto.class);
+                    BarcodeDto params = GSON.fromJson(obj.get(ARGS_TITLE), BarcodeDto.class);
                     yield new GetFoodByBarcodeCommand(params, foodService);
                 }
                 case QUIT_CMD -> new QuitCommand();
